@@ -1,0 +1,88 @@
+/* Testimonial.css */
+
+/* ================= PERFECT CONTINUOUS VERTICAL LOOP ================= */
+@keyframes scrollDown {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes scrollUp {
+  0% {
+    transform: translateY(-50%);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.animate-scroll-down {
+  display: flex;
+  flex-direction: column;
+  animation: scrollDown 20s linear infinite;
+  /* Adjusted speed for readability */
+  will-change: transform;
+}
+
+.animate-scroll-up {
+  display: flex;
+  flex-direction: column;
+  animation: scrollUp 20s linear infinite;
+  will-change: transform;
+}
+
+
+/* ================= CONTINUOUS HORIZONTAL LOOP (MOBILE) ================= */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scroll-right {
+  0% {
+    transform: translateX(-50%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-scroll-left {
+  display: flex;
+  animation: scroll-left 15s linear infinite;
+  will-change: transform;
+}
+
+.animate-scroll-right {
+  display: flex;
+  animation: scroll-right 15s linear infinite;
+  will-change: transform;
+}
+
+/* Hover pause effect removed as per request */
+
+/* Base styles for font consistency if needed, though Tailwind handles most */
+.font-inter {
+  font-family: 'Inter', sans-serif;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-scroll-down,
+  .animate-scroll-up,
+  .animate-scroll-left,
+  .animate-scroll-right {
+    animation: none !important;
+    transform: none !important;
+  }
+}

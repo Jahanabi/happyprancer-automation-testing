@@ -1,0 +1,231 @@
+/* Premium HappyPrancer Authentication Restoration Loading Styles */
+
+.auth-loading-backdrop {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #f4fbf9 0%, #e8fffc 50%, #f0faf8 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Ambient Background Blobs */
+.auth-loading-bg-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.blob-1 {
+  width: 320px;
+  height: 320px;
+  background: #a7f3d0;
+  top: -60px;
+  left: -60px;
+  animation: floatBlob1 12s ease-in-out infinite alternate;
+}
+
+.blob-2 {
+  width: 400px;
+  height: 400px;
+  background: #99f6e4;
+  bottom: -100px;
+  right: -80px;
+  animation: floatBlob2 14s ease-in-out infinite alternate;
+}
+
+.blob-3 {
+  width: 250px;
+  height: 250px;
+  background: #ccfbf1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: floatBlob3 10s ease-in-out infinite alternate;
+}
+
+@keyframes floatBlob1 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(40px, 50px) scale(1.1); }
+}
+
+@keyframes floatBlob2 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-50px, -40px) scale(1.08); }
+}
+
+@keyframes floatBlob3 {
+  0% { transform: translate(-50%, -50%) scale(0.9); }
+  100% { transform: translate(-50%, -50%) scale(1.15); }
+}
+
+/* Centered Glassmorphic Card */
+.auth-loading-card {
+  position: relative;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(3, 65, 58, 0.08);
+  border-radius: 20px;
+  box-shadow: 
+    0 4px 6px -1px rgba(3, 65, 58, 0.03),
+    0 20px 40px -15px rgba(3, 65, 58, 0.12);
+  padding: 3rem 2.5rem;
+  max-width: 480px;
+  width: 90%;
+  text-align: center;
+  box-sizing: border-box;
+  animation: cardEntrance 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes cardEntrance {
+  0% {
+    opacity: 0;
+    transform: scale(0.96) translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Logo */
+.auth-loading-logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.auth-loading-logo {
+  height: 52px;
+  max-width: 220px;
+  object-fit: contain;
+}
+
+/* Circular Loader */
+.auth-loading-spinner-wrapper {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-loading-spinner {
+  width: 64px;
+  height: 64px;
+  border: 3.5px solid rgba(3, 65, 58, 0.1);
+  border-top-color: #03413A;
+  border-right-color: #0d9488;
+  border-radius: 50%;
+  animation: rotateSpinner 0.95s linear infinite;
+  box-sizing: border-box;
+}
+
+.auth-loading-spinner-inner {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  background: rgba(13, 148, 136, 0.12);
+  border-radius: 50%;
+  animation: innerPulse 1.8s ease-in-out infinite alternate;
+}
+
+@keyframes rotateSpinner {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes innerPulse {
+  0% { transform: scale(0.8); opacity: 0.4; }
+  100% { transform: scale(1.15); opacity: 0.9; }
+}
+
+/* Copy Typography */
+.auth-loading-title {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #03413A;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: -0.01em;
+}
+
+.auth-loading-subtitle {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  color: #4b5563;
+  margin: 0 0 1.75rem 0;
+  line-height: 1.5;
+}
+
+/* Indeterminate Progress Indicator */
+.auth-loading-progress-container {
+  width: 100%;
+  height: 4px;
+  background: rgba(3, 65, 58, 0.08);
+  border-radius: 9999px;
+  overflow: hidden;
+  position: relative;
+}
+
+.auth-loading-progress-bar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 45%;
+  background: linear-gradient(90deg, #03413A 0%, #0d9488 50%, #2dd4bf 100%);
+  border-radius: 9999px;
+  animation: indeterminateBar 1.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes indeterminateBar {
+  0% { left: -45%; width: 35%; }
+  50% { width: 55%; }
+  100% { left: 100%; width: 35%; }
+}
+
+/* Responsive Styles */
+@media (max-width: 640px) {
+  .auth-loading-card {
+    padding: 2.25rem 1.5rem;
+    max-width: 92%;
+    border-radius: 16px;
+  }
+
+  .auth-loading-logo {
+    height: 44px;
+  }
+
+  .auth-loading-title {
+    font-size: 1.2rem;
+  }
+
+  .auth-loading-subtitle {
+    font-size: 0.875rem;
+  }
+}
+
+/* Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .auth-loading-bg-blob,
+  .auth-loading-card,
+  .auth-loading-spinner,
+  .auth-loading-spinner-inner,
+  .auth-loading-progress-bar {
+    animation: none !important;
+  }
+}
+

@@ -1,0 +1,39 @@
+@media (max-width: 598px) {
+  .main {
+    padding: 0 1rem;
+    height: 10rem;
+    box-shadow: 0 0px 15px rgba(0, 0, 0, 0.4);
+    border-radius: 1.8rem;
+    display: flex;
+    margin-bottom: 1.2rem;
+  }
+}
+@media (max-width: 442px) {
+  .main {
+    height: 8rem;
+  }
+  .mov {
+    display: none;
+  }
+  .lev {
+    padding: 4%;
+    font-size: 18px;
+  }
+  .stk {
+    font-size: 18px;
+  }
+  .stkm {
+    display: none;
+  }
+}
+@media (max-width: 610px) {
+  .main {
+    padding: 0;
+  }
+  .lev {
+    padding: 4%;
+  }
+  .stk {
+    padding: 4%;
+  }
+}

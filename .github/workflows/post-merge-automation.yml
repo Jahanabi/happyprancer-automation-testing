@@ -1,0 +1,96 @@
+name: Post-Merge Playwright Test Automation
+
+on:
+  push:
+    branches:
+      - test/playwright-workflow-validation
+
+permissions:
+  contents: read
+
+concurrency:
+  group: post-merge-tests-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  post-merge-test-execution:
+    name: Generate Scripts & Execute Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout Merged Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install Dependencies
+        run: npm install --legacy-peer-deps
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Compile Automation Scripts
+        run: npx tsc --project tsconfig.automation.json
+
+      - name: Check Deploy Status
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          echo "Checking if 'Deploy to S3' is currently in progress..."
+          DEPLOY_RUN_ID=$(gh run list --workflow="Deploy to S3" --branch dev --limit 1 --json databaseId,status --jq '.[] | select(.status != "completed") | .databaseId' || echo "")
+          if [ -n "$DEPLOY_RUN_ID" ]; then
+            echo "Waiting for 'Deploy to S3' (Run ID: $DEPLOY_RUN_ID) to complete..."
+            gh run watch "$DEPLOY_RUN_ID" --interval 10 --timeout 600 || true
+          else
+            echo "No active deploy run in progress. Target website is ready."
+          fi
+
+      - name: Generate Playwright TypeScript Tests
+        run: |
+          if [ ! -f "automation/test-cases/generated/latest-test-cases.json" ]; then
+            echo "latest-test-cases.json not found in repository. Generating from merge commit..."
+            TARGET_BRANCH=HEAD~1 node automation/dist/automation/scripts/generate-test-cases.js
+          fi
+          node automation/dist/automation/scripts/generate-playwright.js
+
+      - name: Discover and Validate Tests
+        run: npx playwright test --list
+
+      - name: Run Playwright Tests on HappyPrancer Test Environment
+        id: run_tests
+        continue-on-error: true
+        env:
+          CI: 'true'
+          BASE_URL: https://beta.happyprancer.com
+        run: npx playwright test --project=chromium
+
+      - name: Generate Playwright HTML & Excel Reports
+        if: always()
+        env:
+          BASE_URL: https://beta.happyprancer.com
+        run: |
+          node automation/dist/automation/scripts/export-excel-report.js
+
+      - name: Upload Test Reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: happyprancer-post-merge-reports
+          path: |
+            reports/
+            playwright-report/
+            test-results/
+          retention-days: 30
+
+      - name: Check Test Results
+        if: steps.run_tests.outcome == 'failure'
+        run: |
+          echo "One or more Playwright tests failed against https://beta.happyprancer.com"
+          exit 1

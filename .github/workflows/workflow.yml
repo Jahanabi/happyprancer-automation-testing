@@ -1,0 +1,118 @@
+name: Deploy to S3
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - prod
+      - dev
+      - pre-prod
+
+jobs:
+  deploy-prod:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true && github.base_ref == 'prod'
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+        with:
+          ref: prod
+
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Build the React app
+        run: |
+          export NODE_OPTIONS=--max_old_space_size=4096
+          export CI=false
+          yarn build
+
+      - name: Set up AWS CLI
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Deploy to S3
+        run: aws s3 sync ./build s3://happyprancer.com --delete
+
+      - name: Cloudfront Invalidation
+        run: aws cloudfront create-invalidation --distribution-id E1C7GIH35TQC7G --paths "/*"
+
+  deploy-dev:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true && github.base_ref == 'dev'
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+        with:
+          ref: dev
+
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Build the React app
+        run: |
+          export NODE_OPTIONS=--max_old_space_size=4096
+          export CI=false
+          yarn build
+
+      - name: Set up AWS CLI
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Deploy to S3
+        run: aws s3 sync ./build s3://beta.happyprancer.com --delete
+
+      - name: Cloudfront Invalidation
+        run: aws cloudfront create-invalidation --distribution-id E263LXOGXF3H0N --paths "/*"
+ 
+  deploy-preprod:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true && github.base_ref == 'pre-prod'
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          ref: pre-prod
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Build the React app
+        run: |
+          export NODE_OPTIONS=--max_old_space_size=4096
+          export CI=false
+          yarn build
+
+      - name: Set up AWS CLI
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      # - name: Deploy to S3
+      #   run: aws s3 sync ./build s3://durgaelecteicals.tekkzy.com --delete
+
+      # - name: Cloudfront Invalidation
+      #   run: aws cloudfront create-invalidation --distribution-id E263LXOGXF3H0N --paths "/*"

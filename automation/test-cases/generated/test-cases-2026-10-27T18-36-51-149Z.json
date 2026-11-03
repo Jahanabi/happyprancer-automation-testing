@@ -1,0 +1,142 @@
+{
+  "metadata": {
+    "generatedAt": "2026-10-27T18:36:51.149Z",
+    "prNumber": null,
+    "commitSha": null,
+    "targetBranch": "dev",
+    "totalCases": 6,
+    "affectedModules": [
+      "login",
+      "signup",
+      "home"
+    ],
+    "aiProvider": "heuristic-engine"
+  },
+  "testCases": [
+    {
+      "id": "TC-AUTH-001",
+      "module": "Login",
+      "feature": "Email & Password Authentication",
+      "scenario": "Verify successful login form rendering with email and password fields",
+      "preconditions": [
+        "User navigates to login page /login",
+        "Application is rendered"
+      ],
+      "steps": [
+        "Navigate to /login",
+        "Verify email input with locator #login-email is visible",
+        "Verify password input with locator #login-password is visible",
+        "Verify continue button is visible and enabled"
+      ],
+      "testData": {
+        "route": "/login"
+      },
+      "expectedResult": "Login form is fully rendered and ready for user credential entry",
+      "priority": "Critical",
+      "testType": "Positive",
+      "sourceFile": "src/Development/pages/Auth/Login/index.jsx"
+    },
+    {
+      "id": "TC-AUTH-002",
+      "module": "Login",
+      "feature": "Form Validation",
+      "scenario": "Verify native form validation prevents submission when email is missing or empty",
+      "preconditions": [
+        "User is on /login"
+      ],
+      "steps": [
+        "Leave email field blank",
+        "Click Continue button",
+        "Assert native HTML5 validation rejects empty input"
+      ],
+      "testData": {
+        "email": "",
+        "password": "Password123!"
+      },
+      "expectedResult": "Form submission is halted and email field shows validation error",
+      "priority": "High",
+      "testType": "Negative",
+      "sourceFile": "src/Development/pages/Auth/Login/index.jsx"
+    },
+    {
+      "id": "TC-AUTH-003",
+      "module": "Login",
+      "feature": "Password Recovery Link",
+      "scenario": "Verify Forgot Password link routes user to /forgot-password",
+      "preconditions": [
+        "User is on /login"
+      ],
+      "steps": [
+        "Locate \"Forgot password?\" link",
+        "Click \"Forgot password?\" link",
+        "Verify URL changes to /forgot-password"
+      ],
+      "testData": null,
+      "expectedResult": "Navigation to password reset workflow succeeds",
+      "priority": "Medium",
+      "testType": "Positive",
+      "sourceFile": "src/Development/pages/Auth/Login/index.jsx"
+    },
+    {
+      "id": "TC-SIGNUP-004",
+      "module": "Signup",
+      "feature": "Account Registration Form",
+      "scenario": "Verify all registration inputs (name, email, country, phone, password) render properly",
+      "preconditions": [
+        "User navigates to /signup"
+      ],
+      "steps": [
+        "Navigate to /signup",
+        "Verify name, email, country select, phone, and password inputs are present",
+        "Verify Create Account button is visible"
+      ],
+      "testData": {
+        "route": "/signup"
+      },
+      "expectedResult": "Signup form is rendered with all required fields",
+      "priority": "Critical",
+      "testType": "Positive",
+      "sourceFile": "src/Development/pages/Auth/Signup/SignupForm.jsx"
+    },
+    {
+      "id": "TC-SIGNUP-005",
+      "module": "Signup",
+      "feature": "Referral Query Parameter",
+      "scenario": "Verify referral code passed via URL query parameter automatically populates referral field",
+      "preconditions": [
+        "User opens /signup with ?referral=HPWELCOME"
+      ],
+      "steps": [
+        "Navigate to /signup?referral=HPWELCOME",
+        "Locate referral input #signup-referral",
+        "Verify value matches HPWELCOME"
+      ],
+      "testData": {
+        "referral": "HPWELCOME"
+      },
+      "expectedResult": "Referral input has \"HPWELCOME\" populated automatically",
+      "priority": "High",
+      "testType": "Boundary",
+      "sourceFile": "src/Development/pages/Auth/Signup/SignupForm.jsx"
+    },
+    {
+      "id": "TC-HOME-006",
+      "module": "Home",
+      "feature": "Landing Page & Branding",
+      "scenario": "Verify Happy Prancer landing page loads with top navigation and header",
+      "preconditions": [
+        "Application is accessible at baseURL"
+      ],
+      "steps": [
+        "Navigate to /",
+        "Verify navigation bar exists",
+        "Verify hero header or promotional section is displayed"
+      ],
+      "testData": null,
+      "expectedResult": "Landing page loads without error and displays navigation bar",
+      "priority": "High",
+      "testType": "Positive",
+      "sourceFile": "src/Development/pages/public/Home/index.jsx"
+    }
+  ]
+}

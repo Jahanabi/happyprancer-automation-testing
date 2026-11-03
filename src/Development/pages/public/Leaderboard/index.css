@@ -1,0 +1,77 @@
+/* Hero gradient background */
+.leaderboard-hero {
+  background: linear-gradient(
+    180deg,
+    rgba(15, 118, 110, 0.06),
+    rgba(255, 255, 255, 0)
+  );
+}
+
+@media (min-width: 768px) {
+  .leaderboard-hero {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+}
+
+/* Winner pod gradients */
+.pod-first {
+  background: linear-gradient(135deg, #fee69e 0%, #e8d699 100%);
+}
+
+.pod-second {
+  background: linear-gradient(135deg, #faebeb 0%, #ececec 100%);
+}
+
+.pod-third {
+  background: linear-gradient(135deg, #e6b691 0%, #e6b691 100%);
+}
+
+/* Ranking highlight gradient */
+.ranking-highlight {
+  background: linear-gradient(90deg, #e8fffa 0%, #d3fdf3 100%);
+}
+
+/* Badge reset for medal images */
+.badge {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  width: auto !important;
+  height: auto !important;
+  padding: 0 !important;
+}
+
+/* Skeleton shimmer */
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background-color: #e5e7eb; /* gray-200 */
+}
+.skeleton::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.6) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+ 
+
+.animate-scaleIn { animation: scaleIn 0.3s ease-out forwards; }
+@keyframes scaleIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+.custom-scrollbar::-webkit-scrollbar { width: 5px; } .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(15, 118, 110, 0.2); border-radius: 10px; }

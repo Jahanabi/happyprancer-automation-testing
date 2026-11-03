@@ -1,0 +1,9 @@
+{
+    "institutionId": "happyprancer",
+
+    "s3BucketName": "happyprancer.com",
+
+    "cloudFrontId": "E263LXOGXF3H0N",
+
+    "domain": "https://beta.happyprancer.com"
+}

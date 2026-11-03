@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "@radix-ui/themes/styles.css";
+
+input:focus {
+    outline: none !important;
+}
+
+select:focus {
+    outline: none;
+}
+
+.inter {
+    font-family: "Inter", sans-serif;
+}
+
+.poppins {
+    font-family: "Poppins", sans-serif;
+}
+.instrument-sans {
+
+    font-family: "Instrument Sans", "Inter", sans-serif !important;
+    font-style: normal;
+}
+.no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari, Opera */
+  }
+
+@keyframes dotDotDot {
+
+    0%,
+    20% {
+        opacity: 0;
+    }
+
+    40%,
+    60% {
+        opacity: 1;
+    }
+
+    80%,
+    100% {
+        opacity: 0;
+    }
+}
+
+/* ================= PERFECT CONTINUOUS VERTICAL LOOP ================= */
+
+@keyframes scrollDown {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+
+@keyframes scrollUp {
+  0% { transform: translateY(-50%); }
+  100% { transform: translateY(0); }
+}
+
+.animate-scroll-down {
+  display: flex;
+  flex-direction: column;
+  animation: scrollDown 20s linear infinite;
+  will-change: transform;
+}
+
+.animate-scroll-up {
+  display: flex;
+  flex-direction: column;
+  animation: scrollUp 20s linear infinite;
+  will-change: transform;
+}
+
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes scroll-right {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.animate-scroll-left {
+  animation: scroll-left 15s linear infinite;
+}
+
+.animate-scroll-right {
+  animation: scroll-right 15s linear infinite;
+}
+

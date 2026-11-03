@@ -1,0 +1,95 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TestCaseCollection",
+  "description": "Schema for AI-generated and curated Happy Prancer test cases",
+  "type": "object",
+  "required": ["metadata", "testCases"],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "required": ["generatedAt", "targetBranch", "totalCases", "affectedModules"],
+      "properties": {
+        "generatedAt": { "type": "string" },
+        "prNumber": { "type": ["number", "string", "null"] },
+        "commitSha": { "type": ["string", "null"] },
+        "targetBranch": { "type": "string" },
+        "totalCases": { "type": "number" },
+        "affectedModules": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "aiProvider": { "type": "string" }
+      }
+    },
+    "testCases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "module",
+          "feature",
+          "scenario",
+          "preconditions",
+          "steps",
+          "expectedResult",
+          "priority",
+          "testType",
+          "sourceFile"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^TC-[A-Z0-9]+-[0-9]{3,}$",
+            "description": "Unique test case identifier (e.g. TC-AUTH-001)"
+          },
+          "module": {
+            "type": "string",
+            "description": "Application module (e.g. Login, Signup, Instructors, Gallery, Home, Upcoming Classes)"
+          },
+          "feature": {
+            "type": "string",
+            "description": "Specific feature under test"
+          },
+          "scenario": {
+            "type": "string",
+            "description": "Description of the test scenario"
+          },
+          "preconditions": {
+            "type": ["array", "string"],
+            "items": { "type": "string" },
+            "description": "Prerequisites for running the test"
+          },
+          "steps": {
+            "type": "array",
+            "items": { "type": "string" },
+            "minItems": 1,
+            "description": "Ordered test steps"
+          },
+          "testData": {
+            "type": ["object", "string", "null"],
+            "description": "Input test data"
+          },
+          "expectedResult": {
+            "type": "string",
+            "description": "Expected verification outcome"
+          },
+          "priority": {
+            "type": "string",
+            "enum": ["Critical", "High", "Medium", "Low"],
+            "description": "Test case execution priority"
+          },
+          "testType": {
+            "type": "string",
+            "enum": ["Positive", "Negative", "Boundary", "Regression"],
+            "description": "Classification of the test case"
+          },
+          "sourceFile": {
+            "type": "string",
+            "description": "Source file or change that motivated this test case"
+          }
+        }
+      }
+    }
+  }
+}

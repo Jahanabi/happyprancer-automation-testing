@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    id="svg2"
+    viewBox="0 0 325.26 250.46"
+    version="1.0"
+  >
+  <defs
+      id="defs4"
+    >
+    <radialGradient
+        id="radialGradient3308"
+        gradientUnits="userSpaceOnUse"
+        cy="229.62"
+        cx="190.59"
+        gradientTransform="matrix(1.4234 1.1291 -1.3475 1.6988 243.98 -223.71)"
+        r="297.02"
+      >
+      <stop
+          id="stop3204"
+          style="stop-color:#df6c6c"
+          offset="0"
+      />
+      <stop
+          id="stop3206"
+          style="stop-color:#ffffff"
+          offset="1"
+      />
+    </radialGradient
+    >
+  </defs
+  >
+  <sodipodi:namedview
+      id="base"
+      bordercolor="#666666"
+      guidetolerance="10"
+      pagecolor="#ffffff"
+      gridtolerance="10000"
+      objecttolerance="10"
+      showgrid="false"
+      borderopacity="1.0"
+      showguides="true"
+    >
+    
+  </sodipodi:namedview
+  >
+  <g
+      id="layer1"
+      transform="translate(-52.764 -72.924)"
+    >
+    <g
+        id="g3299"
+        transform="matrix(.54688 0 0 .54688 9.0643 -32.385)"
+      >
+      <path
+          id="path2388"
+          style="stroke-linejoin:round;stroke:#000000;stroke-linecap:round;fill:url(#radialGradient3308)"
+          d="m547.08 193.06c-22.05 0.1-55.79 13.34-105.63 39.22-27.13 14.09-59.82 29.06-88.47 44.41-2.58-25.58-18.08-47.06-31.84-58.88-23.63-20.29-29.78 39.57-69.97 88.69-8.18 10-15.55 19.46-21.91 28.38-65.79 28.66-122.79 82.18-132.06 101.37-69.885 144.75 95.88 270.57 175.88 187.03 27.08-28.28 72.87 20.43 130.15-75.34 1.32-1.48 2.6-2.99 3.88-4.5 40.28 31.55 75.18 46.87 118.68 40.37 33.92-22.07 16.57-51.03-58.43-109.87 65.62 26.17 112.96 35 160.62 10.31 25.46-33.62-3.03-56.78-100.69-90.47-9.3-3.21-19.08-6.78-29.06-10.47h0.6c84.56 0.03 138.17-7.41 174.15-50.31 8.39-38.38-27.76-47.91-131.53-41.16-3.8 0.25-7.71 0.48-11.66 0.69 26.66-19.44 43.57-41.76 50.5-72.37-4.7-18.24-14.95-27.18-33.21-27.1z"
+      />
+      <path
+          id="path3291"
+          style="opacity:0.99;stroke:#000000;stroke-width:1px;fill:none"
+          d="m532.74 291.81l-139.17 8.95"
+      />
+      <path
+          id="path3293"
+          style="stroke:#000000;fill:none"
+          d="m499.18 383.8l-99.32-31.63"
+      />
+      <path
+          id="path3295"
+          style="stroke:#000000;fill:none"
+          d="m468 474.77l-57.17-46.86"
+      />
+      <path
+          id="path3297"
+          style="stroke:#000000;stroke-width:1px;fill:none"
+          d="m353.55 276.57l-96.97 50.5"
+      />
+    </g
+    >
+  </g
+  >
+  <metadata
+    >
+    <rdf:RDF
+      >
+      <cc:Work
+        >
+        <dc:format
+          >image/svg+xml</dc:format
+        >
+        
+        
+        <dc:publisher
+          >
+          <cc:Agent
+            >
+            <dc:title
+              >Openclipart</dc:title
+            >
+          </cc:Agent
+          >
+        </dc:publisher
+        >
+        <dc:title
+          >chibi hand</dc:title
+        >
+        <dc:date
+          >2008-10-27T20:38:18</dc:date
+        >
+        <dc:description
+          >a chibi hand</dc:description
+        >
+        <dc:source
+          >https://openclipart.org/detail/19794/chibi-hand-by-wsnaccad-19794</dc:source
+        >
+        <dc:creator
+          >
+          <cc:Agent
+            >
+            <dc:title
+              >wsnaccad</dc:title
+            >
+          </cc:Agent
+          >
+        </dc:creator
+        >
+        <dc:subject
+          >
+          <rdf:Bag
+            >
+            <rdf:li
+              >cartoon</rdf:li
+            >
+            <rdf:li
+              >chibi</rdf:li
+            >
+            <rdf:li
+              >hand</rdf:li
+            >
+            <rdf:li
+              >people</rdf:li
+            >
+          </rdf:Bag
+          >
+        </dc:subject
+        >
+      </cc:Work
+      >
+      <cc:License
+        >
+        
+        
+        
+      </cc:License
+      >
+    </rdf:RDF
+    >
+  </metadata
+  >
+</svg
+>

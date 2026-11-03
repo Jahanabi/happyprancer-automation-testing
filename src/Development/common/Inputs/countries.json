@@ -1,0 +1,1706 @@
+[
+  {
+    "countryCode": "IN",
+    "value": "91",
+    "name": "India (+91)",
+    "minLength": 10,
+    "maxLength": 10,
+    "guidance": "Enter a 10-digit phone number."
+  },
+  {
+    "countryCode": "US",
+    "value": "1",
+    "name": "United States (+1)",
+    "minLength": 10,
+    "maxLength": 10,
+    "guidance": "Enter a 10-digit phone number."
+  },
+  {
+    "countryCode": "DZ",
+    "value": "213",
+    "name": "Algeria (+213)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "AD",
+    "value": "376",
+    "name": "Andorra (+376)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "AO",
+    "value": "244",
+    "name": "Angola (+244)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "AI",
+    "value": "1264",
+    "name": "Anguilla (+1264)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "AG",
+    "value": "1268",
+    "name": "Antigua & Barbuda (+1268)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "AR",
+    "value": "54",
+    "name": "Argentina (+54)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "AM",
+    "value": "374",
+    "name": "Armenia (+374)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "AW",
+    "value": "297",
+    "name": "Aruba (+297)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "AU",
+    "value": "61",
+    "name": "Australia (+61)",
+    "minLength": 9,
+    "maxLength": 9,
+    "guidance": "Enter a 9-digit phone number."
+  },
+  {
+    "countryCode": "AT",
+    "value": "43",
+    "name": "Austria (+43)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "AZ",
+    "value": "994",
+    "name": "Azerbaijan (+994)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "BS",
+    "value": "1242",
+    "name": "Bahamas (+1242)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "BH",
+    "value": "973",
+    "name": "Bahrain (+973)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "BD",
+    "value": "880",
+    "name": "Bangladesh (+880)",
+    "minLength": 10,
+    "maxLength": 10,
+    "guidance": "Enter a 10-digit phone number."
+  },
+  {
+    "countryCode": "BB",
+    "value": "1246",
+    "name": "Barbados (+1246)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "BY",
+    "value": "375",
+    "name": "Belarus (+375)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "BE",
+    "value": "32",
+    "name": "Belgium (+32)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "BZ",
+    "value": "501",
+    "name": "Belize (+501)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "BJ",
+    "value": "229",
+    "name": "Benin (+229)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "BM",
+    "value": "1441",
+    "name": "Bermuda (+1441)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "BT",
+    "value": "975",
+    "name": "Bhutan (+975)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "BO",
+    "value": "591",
+    "name": "Bolivia (+591)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "BA",
+    "value": "387",
+    "name": "Bosnia Herzegovina (+387)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "BW",
+    "value": "267",
+    "name": "Botswana (+267)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "BR",
+    "value": "55",
+    "name": "Brazil (+55)",
+    "minLength": 10,
+    "maxLength": 11,
+    "guidance": "Enter a 10 to 11-digit phone number."
+  },
+  {
+    "countryCode": "BN",
+    "value": "673",
+    "name": "Brunei (+673)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "BG",
+    "value": "359",
+    "name": "Bulgaria (+359)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "BF",
+    "value": "226",
+    "name": "Burkina Faso (+226)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "BI",
+    "value": "257",
+    "name": "Burundi (+257)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "KH",
+    "value": "855",
+    "name": "Cambodia (+855)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "CM",
+    "value": "237",
+    "name": "Cameroon (+237)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "CA",
+    "value": "1",
+    "name": "Canada (+1)",
+    "minLength": 10,
+    "maxLength": 10,
+    "guidance": "Enter a 10-digit phone number."
+  },
+  {
+    "countryCode": "CV",
+    "value": "238",
+    "name": "Cape Verde Islands (+238)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "KY",
+    "value": "1345",
+    "name": "Cayman Islands (+1345)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "CF",
+    "value": "236",
+    "name": "Central African Republic (+236)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "CL",
+    "value": "56",
+    "name": "Chile (+56)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "CN",
+    "value": "86",
+    "name": "China (+86)",
+    "minLength": 11,
+    "maxLength": 11,
+    "guidance": "Enter an 11-digit phone number."
+  },
+  {
+    "countryCode": "CO",
+    "value": "57",
+    "name": "Colombia (+57)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "KM",
+    "value": "269",
+    "name": "Comoros (+269)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "CG",
+    "value": "242",
+    "name": "Congo (+242)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "CK",
+    "value": "682",
+    "name": "Cook Islands (+682)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "CR",
+    "value": "506",
+    "name": "Costa Rica (+506)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "HR",
+    "value": "385",
+    "name": "Croatia (+385)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "CU",
+    "value": "53",
+    "name": "Cuba (+53)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "CY-N",
+    "value": "90392",
+    "name": "Cyprus North (+90392)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "CY",
+    "value": "357",
+    "name": "Cyprus South (+357)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "CZ",
+    "value": "42",
+    "name": "Czech Republic (+42)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "DK",
+    "value": "45",
+    "name": "Denmark (+45)",
+    "minLength": 8,
+    "maxLength": 8,
+    "guidance": "Enter an 8-digit phone number."
+  },
+  {
+    "countryCode": "DJ",
+    "value": "253",
+    "name": "Djibouti (+253)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "DM",
+    "value": "1809",
+    "name": "Dominica (+1809)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "DO",
+    "value": "1809",
+    "name": "Dominican Republic (+1809)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "EC",
+    "value": "593",
+    "name": "Ecuador (+593)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "EG",
+    "value": "20",
+    "name": "Egypt (+20)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "SV",
+    "value": "503",
+    "name": "El Salvador (+503)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "GQ",
+    "value": "240",
+    "name": "Equatorial Guinea (+240)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "ER",
+    "value": "291",
+    "name": "Eritrea (+291)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "EE",
+    "value": "372",
+    "name": "Estonia (+372)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "ET",
+    "value": "251",
+    "name": "Ethiopia (+251)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "FK",
+    "value": "500",
+    "name": "Falkland Islands (+500)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "FO",
+    "value": "298",
+    "name": "Faroe Islands (+298)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "FJ",
+    "value": "679",
+    "name": "Fiji (+679)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "FI",
+    "value": "358",
+    "name": "Finland (+358)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "FR",
+    "value": "33",
+    "name": "France (+33)",
+    "minLength": 9,
+    "maxLength": 9,
+    "guidance": "Enter a 9-digit phone number."
+  },
+  {
+    "countryCode": "GF",
+    "value": "594",
+    "name": "French Guiana (+594)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "PF",
+    "value": "689",
+    "name": "French Polynesia (+689)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "GA",
+    "value": "241",
+    "name": "Gabon (+241)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "GM",
+    "value": "220",
+    "name": "Gambia (+220)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "GE",
+    "value": "7880",
+    "name": "Georgia (+7880)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "DE",
+    "value": "49",
+    "name": "Germany (+49)",
+    "minLength": 10,
+    "maxLength": 11,
+    "guidance": "Enter a 10 to 11-digit phone number."
+  },
+  {
+    "countryCode": "GH",
+    "value": "233",
+    "name": "Ghana (+233)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "GI",
+    "value": "350",
+    "name": "Gibraltar (+350)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "GR",
+    "value": "30",
+    "name": "Greece (+30)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "GL",
+    "value": "299",
+    "name": "Greenland (+299)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "GD",
+    "value": "1473",
+    "name": "Grenada (+1473)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "GP",
+    "value": "590",
+    "name": "Guadeloupe (+590)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "GU",
+    "value": "671",
+    "name": "Guam (+671)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "GT",
+    "value": "502",
+    "name": "Guatemala (+502)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "GN",
+    "value": "224",
+    "name": "Guinea (+224)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "GW",
+    "value": "245",
+    "name": "Guinea - Bissau (+245)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "GY",
+    "value": "592",
+    "name": "Guyana (+592)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "HT",
+    "value": "509",
+    "name": "Haiti (+509)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "HN",
+    "value": "504",
+    "name": "Honduras (+504)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "HK",
+    "value": "852",
+    "name": "Hong Kong (+852)",
+    "minLength": 8,
+    "maxLength": 8,
+    "guidance": "Enter an 8-digit phone number."
+  },
+  {
+    "countryCode": "HU",
+    "value": "36",
+    "name": "Hungary (+36)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "IS",
+    "value": "354",
+    "name": "Iceland (+354)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "ID",
+    "value": "62",
+    "name": "Indonesia (+62)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "IR",
+    "value": "98",
+    "name": "Iran (+98)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "IQ",
+    "value": "964",
+    "name": "Iraq (+964)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "IE",
+    "value": "353",
+    "name": "Ireland (+353)",
+    "minLength": 9,
+    "maxLength": 9,
+    "guidance": "Enter a 9-digit phone number."
+  },
+  {
+    "countryCode": "IL",
+    "value": "972",
+    "name": "Israel (+972)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "IT",
+    "value": "39",
+    "name": "Italy (+39)",
+    "minLength": 9,
+    "maxLength": 10,
+    "guidance": "Enter a 9 to 10-digit phone number."
+  },
+  {
+    "countryCode": "JM",
+    "value": "1876",
+    "name": "Jamaica (+1876)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "JP",
+    "value": "81",
+    "name": "Japan (+81)",
+    "minLength": 10,
+    "maxLength": 10,
+    "guidance": "Enter a 10-digit phone number."
+  },
+  {
+    "countryCode": "JO",
+    "value": "962",
+    "name": "Jordan (+962)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "KZ",
+    "value": "7",
+    "name": "Kazakhstan (+7)",
+    "minLength": 10,
+    "maxLength": 10,
+    "guidance": "Enter a 10-digit phone number."
+  },
+  {
+    "countryCode": "KE",
+    "value": "254",
+    "name": "Kenya (+254)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "KI",
+    "value": "686",
+    "name": "Kiribati (+686)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "KP",
+    "value": "850",
+    "name": "Korea North (+850)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "KR",
+    "value": "82",
+    "name": "Korea South (+82)",
+    "minLength": 9,
+    "maxLength": 10,
+    "guidance": "Enter a 9 to 10-digit phone number."
+  },
+  {
+    "countryCode": "KW",
+    "value": "965",
+    "name": "Kuwait (+965)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "KG",
+    "value": "996",
+    "name": "Kyrgyzstan (+996)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "LA",
+    "value": "856",
+    "name": "Laos (+856)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "LV",
+    "value": "371",
+    "name": "Latvia (+371)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "LB",
+    "value": "961",
+    "name": "Lebanon (+961)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "LS",
+    "value": "266",
+    "name": "Lesotho (+266)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "LR",
+    "value": "231",
+    "name": "Liberia (+231)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "LY",
+    "value": "218",
+    "name": "Libya (+218)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "LI",
+    "value": "417",
+    "name": "Liechtenstein (+417)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "LT",
+    "value": "370",
+    "name": "Lithuania (+370)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "LU",
+    "value": "352",
+    "name": "Luxembourg (+352)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "MO",
+    "value": "853",
+    "name": "Macao (+853)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "MK",
+    "value": "389",
+    "name": "Macedonia (+389)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "MG",
+    "value": "261",
+    "name": "Madagascar (+261)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "MW",
+    "value": "265",
+    "name": "Malawi (+265)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "MY",
+    "value": "60",
+    "name": "Malaysia (+60)",
+    "minLength": 9,
+    "maxLength": 10,
+    "guidance": "Enter a 9 to 10-digit phone number."
+  },
+  {
+    "countryCode": "MV",
+    "value": "960",
+    "name": "Maldives (+960)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "ML",
+    "value": "223",
+    "name": "Mali (+223)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "MT",
+    "value": "356",
+    "name": "Malta (+356)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "MH",
+    "value": "692",
+    "name": "Marshall Islands (+692)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "MQ",
+    "value": "596",
+    "name": "Martinique (+596)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "MR",
+    "value": "222",
+    "name": "Mauritania (+222)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "YT",
+    "value": "269",
+    "name": "Mayotte (+269)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "MX",
+    "value": "52",
+    "name": "Mexico (+52)",
+    "minLength": 10,
+    "maxLength": 10,
+    "guidance": "Enter a 10-digit phone number."
+  },
+  {
+    "countryCode": "FM",
+    "value": "691",
+    "name": "Micronesia (+691)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "MD",
+    "value": "373",
+    "name": "Moldova (+373)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "MC",
+    "value": "377",
+    "name": "Monaco (+377)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "MN",
+    "value": "976",
+    "name": "Mongolia (+976)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "MS",
+    "value": "1664",
+    "name": "Montserrat (+1664)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "MA",
+    "value": "212",
+    "name": "Morocco (+212)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "MZ",
+    "value": "258",
+    "name": "Mozambique (+258)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "MM",
+    "value": "95",
+    "name": "Myanmar (+95)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "NA",
+    "value": "264",
+    "name": "Namibia (+264)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "NR",
+    "value": "674",
+    "name": "Nauru (+674)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "NP",
+    "value": "977",
+    "name": "Nepal (+977)",
+    "minLength": 10,
+    "maxLength": 10,
+    "guidance": "Enter a 10-digit phone number."
+  },
+  {
+    "countryCode": "NL",
+    "value": "31",
+    "name": "Netherlands (+31)",
+    "minLength": 9,
+    "maxLength": 9,
+    "guidance": "Enter a 9-digit phone number."
+  },
+  {
+    "countryCode": "NC",
+    "value": "687",
+    "name": "New Caledonia (+687)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "NZ",
+    "value": "64",
+    "name": "New Zealand (+64)",
+    "minLength": 8,
+    "maxLength": 10,
+    "guidance": "Enter an 8 to 10-digit phone number."
+  },
+  {
+    "countryCode": "NI",
+    "value": "505",
+    "name": "Nicaragua (+505)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "NE",
+    "value": "227",
+    "name": "Niger (+227)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "NG",
+    "value": "234",
+    "name": "Nigeria (+234)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "NU",
+    "value": "683",
+    "name": "Niue (+683)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "NF",
+    "value": "672",
+    "name": "Norfolk Islands (+672)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "MP",
+    "value": "670",
+    "name": "Northern Marianas (+670)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "NO",
+    "value": "47",
+    "name": "Norway (+47)",
+    "minLength": 8,
+    "maxLength": 8,
+    "guidance": "Enter an 8-digit phone number."
+  },
+  {
+    "countryCode": "OM",
+    "value": "968",
+    "name": "Oman (+968)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "PW",
+    "value": "680",
+    "name": "Palau (+680)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "PA",
+    "value": "507",
+    "name": "Panama (+507)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "PG",
+    "value": "675",
+    "name": "Papua New Guinea (+675)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "PY",
+    "value": "595",
+    "name": "Paraguay (+595)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "PE",
+    "value": "51",
+    "name": "Peru (+51)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "PH",
+    "value": "63",
+    "name": "Philippines (+63)",
+    "minLength": 10,
+    "maxLength": 10,
+    "guidance": "Enter a 10-digit phone number."
+  },
+  {
+    "countryCode": "PL",
+    "value": "48",
+    "name": "Poland (+48)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "PT",
+    "value": "351",
+    "name": "Portugal (+351)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "PR",
+    "value": "1787",
+    "name": "Puerto Rico (+1787)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "QA",
+    "value": "974",
+    "name": "Qatar (+974)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "RE",
+    "value": "262",
+    "name": "Reunion (+262)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "RO",
+    "value": "40",
+    "name": "Romania (+40)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "RU",
+    "value": "7",
+    "name": "Russia (+7)",
+    "minLength": 10,
+    "maxLength": 10,
+    "guidance": "Enter a 10-digit phone number."
+  },
+  {
+    "countryCode": "RW",
+    "value": "250",
+    "name": "Rwanda (+250)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "SM",
+    "value": "378",
+    "name": "San Marino (+378)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "ST",
+    "value": "239",
+    "name": "Sao Tome & Principe (+239)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "SA",
+    "value": "966",
+    "name": "Saudi Arabia (+966)",
+    "minLength": 9,
+    "maxLength": 9,
+    "guidance": "Enter a 9-digit phone number."
+  },
+  {
+    "countryCode": "SN",
+    "value": "221",
+    "name": "Senegal (+221)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "CS",
+    "value": "381",
+    "name": "Serbia (+381)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "SC",
+    "value": "248",
+    "name": "Seychelles (+248)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "SL",
+    "value": "232",
+    "name": "Sierra Leone (+232)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "SG",
+    "value": "65",
+    "name": "Singapore (+65)",
+    "minLength": 8,
+    "maxLength": 8,
+    "guidance": "Enter an 8-digit phone number."
+  },
+  {
+    "countryCode": "SK",
+    "value": "421",
+    "name": "Slovak Republic (+421)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "SI",
+    "value": "386",
+    "name": "Slovenia (+386)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "SB",
+    "value": "677",
+    "name": "Solomon Islands (+677)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "SO",
+    "value": "252",
+    "name": "Somalia (+252)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "ZA",
+    "value": "27",
+    "name": "South Africa (+27)",
+    "minLength": 9,
+    "maxLength": 9,
+    "guidance": "Enter a 9-digit phone number."
+  },
+  {
+    "countryCode": "ES",
+    "value": "34",
+    "name": "Spain (+34)",
+    "minLength": 9,
+    "maxLength": 9,
+    "guidance": "Enter a 9-digit phone number."
+  },
+  {
+    "countryCode": "LK",
+    "value": "94",
+    "name": "Sri Lanka (+94)",
+    "minLength": 9,
+    "maxLength": 9,
+    "guidance": "Enter a 9-digit phone number."
+  },
+  {
+    "countryCode": "SH",
+    "value": "290",
+    "name": "St. Helena (+290)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "KN",
+    "value": "1869",
+    "name": "St. Kitts (+1869)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "LC",
+    "value": "1758",
+    "name": "St. Lucia (+1758)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "SD",
+    "value": "249",
+    "name": "Sudan (+249)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "SR",
+    "value": "597",
+    "name": "Suriname (+597)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "SZ",
+    "value": "268",
+    "name": "Swaziland (+268)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "SE",
+    "value": "46",
+    "name": "Sweden (+46)",
+    "minLength": 9,
+    "maxLength": 9,
+    "guidance": "Enter a 9-digit phone number."
+  },
+  {
+    "countryCode": "CH",
+    "value": "41",
+    "name": "Switzerland (+41)",
+    "minLength": 9,
+    "maxLength": 9,
+    "guidance": "Enter a 9-digit phone number."
+  },
+  {
+    "countryCode": "SY",
+    "value": "963",
+    "name": "Syria (+963)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "TW",
+    "value": "886",
+    "name": "Taiwan (+886)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "TJ",
+    "value": "7",
+    "name": "Tajikstan (+7)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "TH",
+    "value": "66",
+    "name": "Thailand (+66)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "TG",
+    "value": "228",
+    "name": "Togo (+228)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "TO",
+    "value": "676",
+    "name": "Tonga (+676)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "TT",
+    "value": "1868",
+    "name": "Trinidad & Tobago (+1868)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "TN",
+    "value": "216",
+    "name": "Tunisia (+216)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "TR",
+    "value": "90",
+    "name": "Turkey (+90)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "TM",
+    "value": "993",
+    "name": "Turkmenistan (+993)",
+    "minLength": 8,
+    "maxLength": 8,
+    "guidance": "Enter an 8-digit phone number."
+  },
+  {
+    "countryCode": "TC",
+    "value": "1649",
+    "name": "Turks & Caicos Islands (+1649)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "TV",
+    "value": "688",
+    "name": "Tuvalu (+688)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "UG",
+    "value": "256",
+    "name": "Uganda (+256)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "GB",
+    "value": "44",
+    "name": "UK (+44)",
+    "minLength": 10,
+    "maxLength": 10,
+    "guidance": "Enter a 10-digit phone number."
+  },
+  {
+    "countryCode": "UA",
+    "value": "380",
+    "name": "Ukraine (+380)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "AE",
+    "value": "971",
+    "name": "United Arab Emirates (+971)",
+    "minLength": 9,
+    "maxLength": 9,
+    "guidance": "Enter a 9-digit phone number."
+  },
+  {
+    "countryCode": "UY",
+    "value": "598",
+    "name": "Uruguay (+598)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "UZ",
+    "value": "7",
+    "name": "Uzbekistan (+7)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "VU",
+    "value": "678",
+    "name": "Vanuatu (+678)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "VA",
+    "value": "379",
+    "name": "Vatican City (+379)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "VE",
+    "value": "58",
+    "name": "Venezuela (+58)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "VN",
+    "value": "84",
+    "name": "Vietnam (+84)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "VG",
+    "value": "1284",
+    "name": "Virgin Islands - British (+1284)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "VI",
+    "value": "1340",
+    "name": "Virgin Islands - US (+1340)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "WF",
+    "value": "681",
+    "name": "Wallis & Futuna (+681)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "YE-N",
+    "value": "969",
+    "name": "Yemen (North)(+969)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "YE",
+    "value": "967",
+    "name": "Yemen (South)(+967)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "ZM",
+    "value": "260",
+    "name": "Zambia (+260)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  },
+  {
+    "countryCode": "ZW",
+    "value": "263",
+    "name": "Zimbabwe (+263)",
+    "minLength": 8,
+    "maxLength": 11,
+    "guidance": "Enter a valid phone number (8-11 digits)."
+  }
+]

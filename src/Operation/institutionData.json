@@ -1,0 +1,293 @@
+{
+ "institutionid": "happyprancer",
+ "index": "0",
+ "AboutUs": "<h2>Our Purpose</h2><p>HappyPrancer is designed for busy adults and everyday movers who want a consistent, uplifting routine from home. When busy schedules make traveling to a gym impractical, our live online sessions bring supportive movement directly to you. Whether you are stepping into your very first class or looking for an enjoyable way to stay active, our live yoga, Zumba, and BWORKZ dance-fitness sessions are welcoming and beginner-friendly.</p><h2>Founder's Story</h2><p>HappyPrancer started with our founder, PK, who experienced firsthand the difficulty of balancing fitness with a demanding schedule. Discovering Zumba provided an accessible way to stay active and connected with others. When fitness clubs closed during the pandemic, PK founded HappyPrancer to share that experience, bringing instructor-led dance fitness and yoga to members through live online sessions.</p><h2>How to Join</h2><ol><li><strong>Choose a plan.</strong> Select the online or hybrid membership that fits your routine.</li><li><strong>Create your account.</strong> Complete your registration in just a few quick steps.</li><li><strong>Open the schedule and join your live class through Zoom.</strong> View upcoming sessions on your dashboard and connect directly with instructors and members.</li></ol>",
+ "AboutUsBg": null,
+ "batch_timetable_lastupdate": 1746123290,
+ "batch_timetable_status": "Failed",
+ "batch_timetable_updatedby": "us-east-1:d6b67830-ed27-c20d-8ae6-1c55539b0e74",
+ "ClassTypes": [
+  "Yoga",
+  "Zumba",
+  "BWORKZ",
+  "Bachata"
+ ],
+ "companyName": "happyprancer",
+ "country": "India",
+ "createdBy": "us-east-1:d6b67830-ed76-cb2d-5001-3f8d61f30943",
+ "date": "1736160217800",
+ "deliverable": "Completed",
+ "description": "Discover fun fitness at HappyPrancer! Join our Zumba, Bollywood, and yoga classes online. Sign up today and let’s dance, sweat, and celebrate your health!",
+ "domainLink": "https://happyprancer.com",
+ "Facebook": "https://www.facebook.com/HappyPrancer",
+ "FAQ": [
+  {
+   "content": "No prior experience is necessary. All HappyPrancer classes—including Yoga, Zumba, and BWORKZ—are beginner-friendly and designed to be welcoming for all fitness levels. Our instructors guide you through the basics at an easy-to-follow pace.",
+   "title": "Do I need previous experience to join a class?"
+  },
+  {
+   "content": "You just need a device with internet access (laptop, tablet, or smartphone) and a yoga mat for yoga sessions. For BWORKZ and Zumba, wear comfortable athletic clothes and supportive shoes. No special gym equipment is required.",
+   "title": "What equipment do I need?"
+  },
+  {
+   "content": "When instructors record a session, the recording link is published under 'Previous Sessions' in your authenticated Member Dashboard for on-demand review. Note that live participation is our primary format, so recordings are not guaranteed for every session.",
+   "title": "Are class recordings available?"
+  },
+  {
+   "content": "Standard individual memberships are intended for single-user accounts. For households with multiple participants, HappyPrancer offers dedicated Family plans that allow adding family members so each person can participate on their own schedule.",
+   "title": "Can family members use the same membership?"
+  },
+  {
+   "content": "You can cancel your subscription at any time with no cancellation fees by logging into your account under Billing or by emailing admin@happyprancer.com. Cancellation takes effect immediately, and you will not be billed for subsequent billing cycles.",
+   "title": "How do I cancel my membership?"
+  },
+  {
+   "content": "Indian members can avail a special discount and join HappyPrancer live Zumba sessions for only {INDIAN_PRICE} per month, while international users can participate for {INTERNATIONAL_PRICE} per month.",
+   "title": "Do I have to pay any subscription charges ?"
+  },
+  {
+   "content": "Connect with us at awsaiapp.com to explore how we can assist you with detailed instructions and support.",
+   "title": "I am a GYM owner. How can I connect?"
+     },
+     {
+      "content": "HappyPrancer provides both inperson and online live fitness classes, called as Hybrid Class. By subscribing to Hybrid, user can join online as well as inperson classes.",
+      "title": "What is hybrid class?"
+     },
+     {
+      "content": "If you love dance and want to become a HappyPrancer instructor, email us at admin@happyprancer.com with your work experience, and we'll get back to you!",
+      "title": "How can I join as an Instructor?"
+  }
+ ],
+ "Footer_Link_1": "https://bworkzlive.com/",
+ "Footer_Link_2": "https://Zumba.com/",
+ "gtmId": "\tGTM-5DW548R",
+ "Instagram": "https://www.instagram.com/happy.prancer/",
+ "institutionFormat": "Online_Classes",
+ "InstitutionId": "happyprancer",
+ "institutionType": "DanceStudio",
+ "InstructorBg": null,
+ "isDelivered": true,
+ "isFormFilled": true,
+ "keywords": [
+  "happyprancer, dance fitness online, zumba classes, bollywood dance fitness, virtual yoga sessions, online dance workouts, inclusive fitness programs, home fitness classes, fun workout routines, live online fitness classes, calorie-burning dance workouts, accessible fitness for all, group dance fitness sessions, energetic dance workouts, fitness through dance, affordable online yoga, virtual yoga sessions, online yoga classes, wellness and dance, stress relief through movement, dance your way to fitness, community fitness classes, happyprancer fitness experience"
+ ],
+ "LightestPrimaryColor": "#c3f3f1",
+ "LightPrimaryColor": "#225c59",
+ "logoUrl": "https://institution-utils.s3.amazonaws.com/public/happyprancer/images/logo.png",
+ "payment": true,
+ "PrimaryColor": "#225c59",
+ "PrivacyPolicy": [
+  {
+   "content": "HappyPrancer (\"we\", \"our\", or \"us\") is committed to protecting your privacy and personal data. This Privacy Policy describes how we collect, use, process, share, and protect your information when you visit https://happyprancer.com, register for an account, subscribe to our fitness memberships, join our virtual classes, or interact with our services.\n\nBy accessing or using HappyPrancer, you acknowledge that you have read and understood this Privacy Policy. If you do not agree with our practices, please discontinue using our website and services.",
+   "title": "Privacy Policy"
+  },
+  {
+   "content": "We collect information directly from you when you create an account, purchase a subscription, attend classes, or communicate with us, as well as limited technical information automatically:\n\n• Account & Profile Information: When registering, you provide your name, email address, phone number, and optional profile image. If you join via referral, referral link data is associated with your account.\n• Authentication Data: Passwords and authentication tokens managed securely through AWS Cognito, or basic identity tokens if you authenticate through Google.\n• Activity & Engagement Data: Class attendance records, practice streaks, instructor ratings, and accumulated Z Points.\n• Subscription & Payment Records: Subscription plan selections, payment transaction IDs, gateway order/subscription IDs, amounts paid, payment dates, and subscription statuses (active, paused, cancelled).\n• Technical & Usage Data: Basic device and browser information, IP addresses, and page analytics collected via Google Tag Manager to maintain site performance and security.",
+   "title": "Information We Collect"
+  },
+  {
+   "content": "We use the personal information we collect for the following specific purposes:\n\n• Providing and managing your HappyPrancer account and class access.\n• Authenticating your identity and preventing unauthorized account access.\n• Delivering live online dance, Zumba, and yoga sessions via Zoom.\n• Processing subscription payments, renewals, cancellations, and invoices.\n• Calculating Z Points, practice streaks, and maintaining the All-Time Leaderboard.\n• Facilitating instructor ratings and referral reward benefits.\n• Sending essential account communications, class schedule notifications, and service updates.\n• Complying with applicable legal, accounting, and regulatory obligations.\n\nWe do not sell, rent, trade, or monetize your personal information to third-party marketing companies.",
+   "title": "How We Use Information"
+  },
+  {
+   "content": "HappyPrancer provides sign-up and login capabilities using Google Authentication (Google Identity Services, Google One Tap, and AWS Cognito federated sign-in):\n\n• Information Received from Google: When you sign in with Google, Google provides HappyPrancer with your basic profile information consisting of your full name, email address, and an authentication ID token.\n• Information Stored by HappyPrancer: HappyPrancer stores your name and email address in our AWS Cognito User Pool and DynamoDB database to establish your user account and profile.\n• Scope of Access: Google authentication is used strictly for identity verification and account creation. HappyPrancer does not request or access any other Google account permissions or services, such as Google Drive, Google Contacts, Google Calendar, or Gmail.\n• Phone Number Verification: Because Google does not provide a phone number, users signing up through Google are prompted to provide a contact number for class schedule updates and account verification.",
+   "title": "Google Authentication & Sign-In"
+  },
+  {
+   "content": "Our live virtual fitness, Zumba, and yoga sessions are conducted through Zoom Video Communications:\n\n• Meeting Links: Instructors and administrators create Zoom meeting links that are stored on HappyPrancer and displayed in the authenticated Member Dashboard under Upcoming Sessions.\n• Direct Redirection: When you click \"Join on Zoom\", you are redirected to the Zoom application or web client in a separate browser tab. HappyPrancer does not embed the meeting client or transmit your personal profile data to Zoom via API. Your use of Zoom is subject to Zoom's own Privacy Statement and Terms of Service.\n• Class Recordings: Instructors and administrators may attach recording links to past sessions in the Member Dashboard (\"Previous Sessions\") for on-demand review by subscribed members.\n• Recording Practices Notice: Routine recording practices, participant camera/audio recording consent, and recording storage retention schedules require formal business policy confirmation.",
+   "title": "Online Classes & Zoom Integration"
+  },
+  {
+   "content": "All financial transactions and recurring subscription memberships are processed through verified third-party payment gateways:\n\n• Payment Gateways: We use Razorpay for domestic transactions in Indian Rupees (INR) and PayPal for international transactions and memberships.\n• No Direct Card Storage: HappyPrancer never collects, processes, or stores credit card numbers, debit card numbers, CVV security codes, card expiration dates, or net banking passwords on our servers. All financial details are entered directly into the secure, PCI-DSS compliant checkout interfaces of Razorpay or PayPal.\n• Data Stored by HappyPrancer: HappyPrancer stores transaction metadata returned by the payment processor, including payment ID, order ID, subscription ID, payment date, billing amount, currency, and subscription status (active, paused, or cancelled).\n• Use of Payment Data: Stored transaction records are used exclusively to activate subscription access, manage plan upgrades/downgrades, process eligible refunds in accordance with our Refund Policy, generate invoices, and calculate instructor referral cashouts.",
+   "title": "Payments & Subscriptions"
+  },
+  {
+   "content": "HappyPrancer operates a public All-Time Leaderboard available to all website visitors at https://happyprancer.com/leaderboard:\n\n• Publicly Visible Information: If you participate in classes, refer members, or rate instructors, your total accumulated Z Points contribute to your leaderboard ranking. The public leaderboard displays:\n  - Your display Name (or \"Member\" / account status such as \"Inactive\" where applicable)\n  - Total Z Points earned to date\n  - All-Time Rank\n  - Profile Picture (or initials avatar)\n  - Current active practice streak (e.g., \"🔥 3d\")\n• Strictly Confidential Information: Your email address, phone number, billing records, payment history, attendance logs, and internal Cognito/user IDs are never shown on the public leaderboard.\n• Account Disambiguation: Historical or inactive accounts retain their earned points and ranking on the All-Time Leaderboard and are clearly disambiguated with an \"Inactive\" indicator without exposing private account identifiers.",
+   "title": "Public Leaderboard & Z Points"
+  },
+  {
+   "content": "We retain your personal data, subscription records, and activity history for as long as your account remains active or as necessary to:\n\n• Provide ongoing class access and platform features.\n• Maintain accurate historical standings on the All-Time Leaderboard.\n• Track accumulated Z Points and referral reward associations.\n• Maintain statutory business, tax, and accounting records related to subscriptions.\n• Resolve disputes and enforce our platform agreements.\n\nFormal retention schedules: Specific automated data retention periods and deletion schedules for inactive accounts and session logs require business and legal approval.",
+   "title": "Data Retention"
+  },
+  {
+   "content": "We respect your right to control your personal information:\n\n• Account Deletion Process: HappyPrancer provides an administrative user deletion workflow on the backend (/admin/delete-user) to remove or deactivate user accounts and associated profile records.\n• Submitting a Deletion Request: Self-service account deletion is currently not available directly in the user profile interface. Members and users may request the deletion or deactivation of their account and personal data at any time by contacting our administration team.\n• Official Deletion & Privacy Contact: To request account deletion, data access, or correction of your personal information, please email our verified administrative contact at admin@happyprancer.com.\n• Request Handling: Upon receiving a verified request from your registered email address, we will process the deletion or deactivation in accordance with operational procedures and legal retention requirements.",
+   "title": "Data Deletion & Privacy Requests"
+  },
+  {
+   "content": "We share your information only with verified third-party service providers necessary to operate the HappyPrancer platform:\n\n• Amazon Web Services (AWS): Cloud infrastructure hosting our application, DynamoDB databases, Cognito user authentication, S3 media storage, and CloudFront content delivery.\n• Google: Identity authentication via Google OAuth 2.0 / One Tap, and website analytics via Google Tag Manager.\n• Zoom Video Communications: Third-party video conferencing service for conducting live fitness and dance sessions.\n• Razorpay: Payment gateway processing Indian Rupee (INR) transactions and recurring subscriptions.\n• PayPal: Payment gateway processing international currency transactions and memberships.\n\nAll service providers are bound to handle personal data only as required to perform their designated functions on our behalf and in compliance with security standards.",
+   "title": "Third-Party Service Providers"
+  },
+  {
+   "content": "HappyPrancer uses cookies and browser storage technologies:\n\n• Essential Cookies: Used to maintain your authenticated login session, preserve temporary navigation parameters, and ensure secure platform access.\n• Browser Session Storage: Used temporarily during the signup/payment transition to preserve selected subscription plans and referral tokens across authentication redirects.\n• What We Do Not Do: Our website does not use cookies to track items in an e-commerce shopping cart, nor do we use tracking cookies to sell identifiable customer profiles to third parties.\n• Managing Cookies: You can modify your browser settings to decline cookies; however, disabling essential cookies will prevent you from logging into your account or accessing subscription features.",
+   "title": "Cookies & Browser Technologies"
+  },
+  {
+   "content": "If you have any questions, concerns, feedback, or requests regarding this Privacy Policy or our privacy practices, please contact us:\n\n• Email: admin@happyprancer.com\n• Address: C52, Banpur, Khordha, Odisha, India, 752031\n• Official Website: https://happyprancer.com",
+   "title": "Contact Us"
+  }
+ ],
+ "productId": "1000007",
+ "Query_Address": " Address - C52, Banpur, Khordha, Odisha, India, 752031",
+ "Query_EmailId": "saibedamatta@happyprancer.com",
+ "Query_PhoneNumber": "+918249675567",
+ "Query_WebLink": "https://happyprancer.com/",
+ "Refund": [
+  {
+   "content": "Thank you for choosing HappyPrancer for your virtual dance workout needs! We are committed to providing you with the best experience possible. Please carefully read the following cancellation and refund policy, which applies to both Indian and outside India users.",
+   "heading": "Cancellation/Refund Policy"
+  },
+  {
+   "content": "We charge {INDIAN_PRICE} per month for Indian users and {INTERNATIONAL_PRICE} per month for outside India users. We may run periodic discount offers. The subscription fee is charged on a monthly basis and is an automated recurring payment",
+   "heading": "Subscription Fees"
+  },
+  {
+   "content": "   You can cancel your subscription at any time without incurring any cancellation fees. To cancel your subscription, please log in to your account and follow the cancellation process. Your subscription will be canceled immediately.",
+   "heading": "Cancellation"
+  },
+  {
+   "content": "If the payment for your subscription fails or if we receive confirmation from the bank, we will offer a refund. We may also offer refunds in certain other circumstances, at our discretion. Refunds will be issued to the original payment method used to purchase the subscription.\n\n      In the event of cancellation of the subscription, you will be refunded the remaining subscription amount for the unused portion of the month only if you cancel the subscription at least 24 hours before the end of the billing cycle. However, if you have taken advantage of any discount offers at the time of purchase, the refund amount will be calculated based on the discounted amount paid.\n\n    If you cancel your subscription after the first month or in the middle of the month, you will not be eligible for a refund for the subscription fee paid for that month. However, you will not be charged for any subsequent months",
+   "heading": "Refunds"
+  },
+  {
+   "content": "From time to time, we may offer periodic discount offers on our subscription fees. If you purchase a subscription during a discount offer period, the subscription fee will be charged at the discounted rate for the duration of the offer period. If you cancel your subscription during the offer period, you will not be eligible for a refund.",
+   "heading": "Periodic Discount Offers"
+  },
+  {
+   "content": "If you have any questions or concerns regarding our cancellation and refund policy, please contact us at admin@happyprancer.com. We are always happy to assist you in any way .",
+   "heading": "Contact Us"
+  }
+ ],
+ "SecondaryColor": "#00ffc4",
+ "seo_lastUpdatedDate": "2025-05-16",
+ "seo_updatedBy": "Sibananda Patra",
+ "Services": [
+  {
+   "description": "Free online classes via Zoom for continuous fitness.\nClasses available for various fitness levels, from beginner to advanced.\nNutritional guidance provided to complement fitness routines.",
+   "serialNumber": 1,
+   "serviceImg": "https://institution-utils.s3.us-east-1.amazonaws.com/public/services/stay%20home.jpg",
+   "title": "Stay Home Stay Fit"
+  },
+  {
+   "description": "One-on-one sessions tailored to individual fitness goals and preferences.\nCustomized workout plans designed to maximize results.\nAvailability of virtual consultations for convenience and accessibility.",
+   "serialNumber": 2,
+   "serviceImg": "https://institution-utils.s3.us-east-1.amazonaws.com/public/services/personal%20exs.jpg",
+   "title": "Personal Exercise"
+  },
+  {
+   "description": "Classes led by highly experienced Zumba Internationally Certified instructors.\nVariety of dance styles incorporated for a dynamic and engaging workout.\nRegular updates on new routines and techniques to keep classes fresh.",
+   "serialNumber": 3,
+   "serviceImg": "https://institution-utils.s3.us-east-1.amazonaws.com/public/services/inst%20led.jpg",
+   "title": "Instructor Led Classes"
+  },
+  {
+   "description": "Opportunity to exercise with friends in a supportive and motivating environment.\nSocial interaction and camaraderie to enhance the workout experience.\nRegular group challenges and competitions to keep participants engaged and motivated.",
+   "serialNumber": 4,
+   "serviceImg": "https://institution-utils.s3.us-east-1.amazonaws.com/public/services/group%20exc.avif",
+   "title": "Group Exercise with Friends"
+  }
+ ],
+ "ServicesBg": null,
+ "ServicesPortrait": null,
+ "smsFormat": "Welcome to HappyPrancer, ${user}",
+ "src_Components_Home_Header3__h1": "A Fitness Movement",
+ "src_Components_Home_Header3__h2": "Why HappyPrancer?",
+ "src_Components_Home_Header3__h5_1": "Stay Home Stay Fit",
+ "src_Components_Home_Header3__h5_2": "Instructor Led Classes",
+ "src_Components_Home_Header3__h5_3": "Personal & Group Exercise",
+ "src_Components_Home_Header3__p_1": "Free online classes via Google meet/Zoom for continous workout.",
+ "src_Components_Home_Header3__p_2": "Online classes are conducted by Zumba Internationally Certified instructors.",
+ "src_Components_Home_Header3__p_3": "Personal (person-to-person trainer based) and Group exercise withfriends",
+ "src_Components_Home_Why__h1": "Why choose HappyPrancer?",
+ "status": "Active",
+ "submissiontime": 1717682497881,
+ "SubscriptionBg": null,
+ "TagLine": "Fitness at your fingertips",
+ "TagLine1": "Online Live & In-person Bollywood Dance & Yoga Sessions at Affordable Price",
+ "TermsData": [
+  {
+   "content": "Welcome to HappyPrancer! By using our website, you agree to comply with and be bound by the following terms and conditions of use. Please read these terms carefully before using our website.",
+   "title": "Terms & Condition"
+  },
+  {
+   "content": "By participating in HappyPrancer virtual classes, you acknowledge that you will receive information and instruction about HappyPrancer dance workouts. You understand that HappyPrancer requires physical exertion, which may be strenuous and may cause physical injury. You fully acknowledge and are aware of the risks involved in participating in HappyPrancer virtual classes.",
+   "title": "Acknowledgement"
+  },
+  {
+   "content": "You understand and acknowledge that it is your responsibility to consult with a physician prior to and regarding your participation in any physical fitness program, including Zumba. You represent and warrant that you have no medical condition that would prevent your participation in physical fitness activities.",
+   "title": "Medical Consultation"
+  },
+  {
+   "content": "By participating in HappyPrancer virtual classes, you assume full responsibility for any risk, injuries, or damages, known and unknown, which you might incur as a result of participating in the program.",
+   "title": "Assumption of Risk"
+  },
+  {
+   "content": "In further consideration of being permitted to participate in the HappyPrancer virtual classes, you knowingly, voluntarily, and expressly waive any claim you may have against the Instructor, the founder, or any core member for injuries or damages that you may sustain as a result of participating in HappyPrancer sessions.",
+   "title": "Waiver of Claims"
+  },
+  {
+   "content": "You agree to indemnify and hold harmless HappyPrancer, its officers, directors, employees, agents, and affiliates from any and all claims, damages, expenses, including reasonable attorneys’ fees, arising out of or resulting from your participation in HappyPrancer virtual classes.",
+   "title": "Indemnification"
+  },
+  {
+   "content": "These terms and conditions shall be governed by and construed in accordance with the laws of India. Any dispute arising out of or related to these terms and conditions shall be subject to the exclusive jurisdiction of the courts located in India.",
+   "title": "Governing Law"
+  },
+  {
+   "additionalContent1": "By using our website, you agree to comply with and be bound by these terms and conditions of use.",
+   "additionalContent2": "For more information or if you have any questions regarding these Terms & Conditions, please feel free to contact us at admin@happyprancer.com. We are happy to assist you with any questions or concerns.",
+   "content": "HappyPrancer reserves the right to modify these terms and conditions at any time without prior notice. Your continued use of our website constitutes your agreement to be bound by such modifications.",
+   "title": "Modification"
+  }
+ ],
+ "Testimonial": [
+  {
+   "description": "Honestly speaking at 1st it seemed little bit difficult Bt when I used to go regularly I came to knew it is the best way to workout. If u guys really want to improve your fitness then must step forward to happy prancer and I promise u will never regret once... Best platform to go through basics.. 💃💃",
+   "img": "https://institution-utils.s3.amazonaws.com/happyprancer/images/Testimonial/1.png",
+   "name": "Monalisha Sahoo"
+  },
+  {
+   "description": "If you're new to exercise, you aren't sure what types of exercise you like, or you feel intimidated when walking into a new workout environment, online training is an excellent reprieve from the traditional gym or studio.According to me dance is the best fitness and workout where you never get bored,dance is the fun way to express yourself so yes this platform will give you such experience. Every session is mind blowing. Quality is awesome. Trainers are best.It is easy to learn for from  beginners to advanced. Motivation by the trainers and their coaching can't be described by words.Trainers are really comes with utmost positivity throughout the session.its been a good journey with happyprancers.\nThank you happyprancer",
+   "img": "https://institution-utils.s3.amazonaws.com/happyprancer/images/Testimonial/2.png",
+   "name": "Bapuji Mallik"
+  },
+  {
+   "description": "Joining in this Live session ....I have learnt to spend time with myself and relative my stress in a fraction of minute.. delighted to be a part of this class...",
+   "img": "https://institution-utils.s3.amazonaws.com/happyprancer/images/Testimonial/3.jpg",
+   "name": "Priyanka Biswal"
+  },
+  {
+   "description": "⭐⭐⭐⭐⭐ Zumba at HappyPrancer is a perfect blend of fitness for both body & mind 💃🧘‍♀. It boosts energy and makes every session enjoyable. Big thanks to the instructors for their amazing efforts 👏🙏.",
+   "img": "https://institution-utils.s3.us-east-1.amazonaws.com/public/Testimonials/Modified_udit.jpg",
+   "name": "Udit Kumar Mishra"
+  },
+  {
+   "description": "HappyPrancer Community offers a very motivating online Zumba class.  I enjoyed dancing to the wonderful music.",
+   "img": "https://institution-utils.s3.us-east-1.amazonaws.com/public/Testimonials/Sanghamitra_testimonial.jpeg",
+   "name": "Sanghamitra"
+  },
+  {
+   "description": "Joining yoga classes at HappyPrancer has been one of the best decisions I’ve made. The sessions are refreshing, the instructors are incredibly supportive, and I feel more energetic and balanced every day. It’s truly a wonderful community to grow both physically and mentally.",
+   "img": "https://institution-utils.s3.us-east-1.amazonaws.com/happyprancer/images/Testimonial/siba-testimonial.png",
+   "name": "Sibananda"
+  },
+  {
+   "description": "I joined the 30 minute evening yoga sessions at HappyPrancer, and they’ve become a perfect way to unwind after work. Earlier, I used to feel mentally drained and physically tired by the end of the day, but these sessions help me relax, stretch and recharge. The trainers create a calm yet engaging atmosphere and I really appreciate the flexibility to join online or attend the hybrid classes whenever I can. It’s a simple routine that’s made a noticeable difference in how I end my day.",
+   "img": "",
+   "name": "Sai"
+  },
+  {
+   "description": "One of the best platforms I've come across. HappyPrancer combines ease of use with excellent service, making the overall experience enjoyable. The attention to detail and commitment to user satisfaction really stand out. Highly recommended!",
+   "img": "",
+   "name": "Rahul Roy"
+  }
+ ],
+ "TestimonialBg": null,
+ "title": "Welcome to HappyPrancer: Dance Your Way to Fun and Fitness!",
+ "UpiId": "happyprancer@ybl",
+ "userName": "Sai Swaroop Bedamatta",
+ "videoUrl": "https://institution-utils.s3.us-east-1.amazonaws.com/happyprancer/images/backgroundvideo.mp4",
+ "WpNo": "7077993547",
+ "YTLink": "https://www.youtube.com/embed/LL1rcLytUXE",
+ "scheduleTimezone": null,
+ "timezone": null
+}

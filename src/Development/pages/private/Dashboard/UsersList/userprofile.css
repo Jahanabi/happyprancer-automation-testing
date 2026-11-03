@@ -1,0 +1,112 @@
+/* userprofile.css */
+
+/* Update modal and modal-content styles */
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+}
+
+.modal-content {
+  border-radius: 10px;
+  border-color: transparent;
+  width: auto;
+  max-height: 90%; /* Limit the maximum height */
+}
+
+/* Style the close button */
+.modal-content button {
+  background-color: #1b7571;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Style the buttons within the form */
+.modal-content button:hover {
+  background-color: #146a66; /* Darker color on hover */
+}
+
+/* Style the input fields and labels */
+.modal-content input,
+.modal-content select {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Center the labels */
+.modal-content label {
+  margin-left: 2px;
+}
+
+/* Style the form elements */
+.modal-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Add padding and margin to the form */
+.modal-content form {
+  padding: 10px;
+  margin: 10px;
+}
+
+.modal {
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.049
+  ); /* Background color with transparency */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  /* ... other styles for your modal */
+}
+
+.modal-content .invbut {
+  background-color: #fff;
+  color: #1b7571;
+  border: 1px solid #1b7571;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.modal-content .invbut:hover {
+  background-color: #fbfafa !important;
+}
+
+.newedit{
+  justify-content: space-between;
+  padding: 0rem 5rem;
+}
+
+.crossme{
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: 1rem;
+  flex-wrap: wrap;
+}
+
+.crossme:hover {
+  background: #bab5b5;
+  border-radius: 50%;
+}

@@ -1,0 +1,59 @@
+name: AI Test Generation (PR)
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+    branches:
+      - test/playwright-workflow-validation
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ai-test-gen-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  generate-and-store-test-cases:
+    name: Generate & Store Test Cases
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout PR Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch Target Branch (test/playwright-workflow-validation)
+        run: git fetch origin test/playwright-workflow-validation:test/playwright-workflow-validation || true
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm install --legacy-peer-deps
+
+      - name: Compile Automation Scripts
+        run: npx tsc --project tsconfig.automation.json
+
+      - name: Analyze Git Diff & Generate Structured Test Cases
+        env:
+          AI_PROVIDER: ${{ secrets.AI_PROVIDER || 'offline' }}
+          AI_API_KEY: ${{ secrets.AI_API_KEY }}
+          AI_MODEL: ${{ secrets.AI_MODEL || 'gpt-4o-mini' }}
+          TARGET_BRANCH: test/playwright-workflow-validation
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          node automation/dist/automation/scripts/generate-test-cases.js
+
+      - name: Upload Test Cases Artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr-generated-test-cases
+          path: automation/test-cases/generated/
+          retention-days: 14

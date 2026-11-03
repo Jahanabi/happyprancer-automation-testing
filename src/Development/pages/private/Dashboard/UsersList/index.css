@@ -1,0 +1,370 @@
+/* ============================================================================
+   MEMBERS PAGE — UPCOMING CLASSES VISUAL LANGUAGE ENHANCEMENT
+   ============================================================================ */
+
+.members-page {
+  --members-primary: #216B66;
+  --members-primary-light: #E8F5E9;
+  --members-sage: #D7ECDA;
+  --members-ink: #1B4D49;
+  --members-muted: #5F7A76;
+  --members-gold: #D97706;
+  --members-gold-light: #FEF3C7;
+  --members-border: #E3ECE9;
+  --members-surface: #FFFFFF;
+  --members-bg: #F8F9FA;
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - 5rem);
+  box-sizing: border-box;
+  background-color: var(--members-bg, #F8F9FA);
+  /* Dot grid on the scroll surface */
+  background-image: radial-gradient(
+    circle at 6px 6px,
+    rgba(0, 0, 0, 0.05) 1px,
+    transparent 0
+  );
+  background-size: 28px 28px;
+  background-position: 0 0;
+  background-repeat: repeat;
+  overflow-x: hidden;
+  padding: 1.75rem 2.25rem 3.5rem;
+}
+
+@media (max-width: 1024px) {
+  .members-page {
+    padding: 1.25rem 1.5rem 3rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .members-page {
+    padding: 1rem 0.75rem 2.5rem;
+  }
+}
+
+/* Background image overlay with soft opacity for optimal readability */
+.members-page::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.52;
+}
+
+/* Floating glow orbs — soft, blurred, drifting slowly in background */
+.members-bg-glow {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.members-glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(75px);
+  opacity: 0.38;
+  will-change: transform;
+}
+
+.members-glow-orb--one {
+  width: 380px;
+  height: 380px;
+  left: -80px;
+  top: 6%;
+  background: radial-gradient(circle, var(--members-primary-light, #CFE9DC) 0%, transparent 70%);
+  animation: membersGlowDriftOne 22s ease-in-out infinite;
+}
+
+.members-glow-orb--two {
+  width: 320px;
+  height: 320px;
+  right: -60px;
+  top: 40%;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.35) 0%, transparent 70%);
+  animation: membersGlowDriftTwo 26s ease-in-out infinite;
+}
+
+.members-glow-orb--three {
+  width: 280px;
+  height: 280px;
+  left: 20%;
+  bottom: -60px;
+  background: radial-gradient(circle, rgba(33, 107, 102, 0.25) 0%, transparent 70%);
+  animation: membersGlowDriftThree 30s ease-in-out infinite;
+}
+
+@keyframes membersGlowDriftOne {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(45px, 60px) scale(1.12); }
+}
+
+@keyframes membersGlowDriftTwo {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-50px, -35px) scale(1.08); }
+}
+
+@keyframes membersGlowDriftThree {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(35px, -45px) scale(1.15); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .members-glow-orb {
+    animation: none;
+  }
+}
+
+.members-shell {
+  position: relative;
+  z-index: 1;
+  max-width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  box-sizing: border-box;
+}
+
+/* Card entrance subtle animation */
+.members-card-entrance {
+  animation: membersFadeIn 0.35s ease-out;
+}
+
+@keyframes membersFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .members-card-entrance {
+    animation: none;
+  }
+}
+
+/* Table scrollbar styling */
+.members-table-scrollbar::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+
+.members-table-scrollbar::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 999px;
+}
+
+.members-table-scrollbar::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 999px;
+}
+
+.members-table-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Table row smooth hover */
+.members-table-row {
+  transition: background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.members-table-row:hover {
+  background-color: #F4FAF8 !important;
+}
+
+/* Legacy helper classes preserved */
+.email-hover {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.email-hover:hover {
+  white-space: normal;
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.showBox {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(3px);
+  z-index: 1000;
+}
+
+/* ============================================================================
+   MEMBERS HERO CARD — UPCOMING CLASSES (DashboardHero) VISUAL SYSTEM
+   ============================================================================ */
+
+.members-hero-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.375rem; /* 22px matching DashboardHero */
+  border: 1px solid var(--members-border, #E3ECE9);
+  background: linear-gradient(180deg, #FFFFFF 0%, #FBFDF9 55%, #F4F9EF 100%);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 16px rgba(33, 107, 102, 0.03);
+  padding: 1.35rem 1.6rem;
+  box-sizing: border-box;
+}
+
+@media (min-width: 640px) {
+  .members-hero-card {
+    padding: 1.6rem 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .members-hero-card {
+    padding: 1.75rem 2.25rem;
+  }
+}
+
+/* Subtle dashboard texture inside the hero card */
+.members-hero-bg-texture {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.18;
+  background-position: center top;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* Scenery layer */
+.members-hero-scenery {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Left botanical branch */
+.members-hero-branch {
+  position: absolute;
+  left: -8px;
+  bottom: -15px;
+  width: 135px;
+  height: 135px;
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .members-hero-branch {
+    width: 105px;
+    height: 105px;
+    left: -12px;
+    bottom: -10px;
+    opacity: 0.32;
+  }
+}
+
+@media (max-width: 480px) {
+  .members-hero-branch {
+    width: 85px;
+    height: 85px;
+    opacity: 0.22;
+  }
+}
+
+/* Right celestial body & leaf cluster */
+.members-hero-celestial-wrap {
+  position: absolute;
+  right: 40px;
+  top: -15px;
+  width: 135px;
+  height: 135px;
+  pointer-events: none;
+}
+
+@media (max-width: 1024px) {
+  .members-hero-celestial-wrap {
+    right: 20px;
+    top: -20px;
+    width: 110px;
+    height: 110px;
+    opacity: 0.75;
+  }
+}
+
+@media (max-width: 640px) {
+  .members-hero-celestial-wrap {
+    right: -10px;
+    top: -25px;
+    width: 95px;
+    height: 95px;
+    opacity: 0.5;
+  }
+}
+
+.members-hero-leaves-cluster {
+  position: absolute;
+  right: 140px;
+  top: 15px;
+  width: 65px;
+  height: 65px;
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+@media (max-width: 1024px) {
+  .members-hero-leaves-cluster {
+    right: 105px;
+    top: 10px;
+    width: 50px;
+    height: 50px;
+    opacity: 0.55;
+  }
+}
+
+@media (max-width: 768px) {
+  .members-hero-leaves-cluster {
+    display: none;
+  }
+}
+
+/* Curved green wave along the bottom edge */
+.members-hero-curve {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 38px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@media (max-width: 640px) {
+  .members-hero-curve {
+    height: 24px;
+  }
+}
+
+/* Foreground content */
+.members-hero-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+

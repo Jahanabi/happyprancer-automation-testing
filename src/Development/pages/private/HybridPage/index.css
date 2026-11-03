@@ -1,0 +1,68 @@
+.range-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+  outline: none;
+}
+
+/* Chrome / Safari / Edge — Track */
+.range-slider::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 8px;
+  background: inherit;
+}
+
+/* Chrome / Safari / Edge — Thumb */
+.range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--primaryColor, #225c59) !important;
+  border: 2px solid white;
+  cursor: grab;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.2);
+  margin-top: -6px;
+  position: relative;
+  z-index: 1;
+}
+
+.range-slider:active::-webkit-slider-thumb {
+  cursor: grabbing;
+}
+
+/* Firefox — Track */
+.range-slider::-moz-range-track {
+  height: 6px;
+  border-radius: 8px;
+  background: #e5e5e5;
+  border: none;
+}
+
+/* Firefox — Thumb */
+.range-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--primaryColor, #225c59) !important;
+  border: 2px solid white;
+  cursor: grab;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.2);
+  position: relative;
+  z-index: 1;
+}
+
+.range-slider:active::-moz-range-thumb {
+  cursor: grabbing;
+}
+
+/* Firefox progress bar - filled portion */
+.range-slider::-moz-range-progress {
+  height: 6px;
+  border-radius: 8px;
+  background: var(--primaryColor, #225c59);
+}
