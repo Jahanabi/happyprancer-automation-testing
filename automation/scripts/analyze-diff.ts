@@ -31,7 +31,7 @@ export interface DiffAnalysisResult {
  * Identify git changes against a target branch or local working tree
  */
 export function analyzeDiff(targetBranch?: string): DiffAnalysisResult {
-  const resolvedTarget = targetBranch || process.env.TARGET_BRANCH || 'origin/dev';
+  const resolvedTarget = targetBranch || process.env.TARGET_BRANCH || 'test-workflow';
   let gitDiffOutput = '';
   let nameStatusOutput = '';
 
@@ -151,6 +151,6 @@ export function analyzeDiff(targetBranch?: string): DiffAnalysisResult {
 }
 
 if (require.main === module) {
-  const target = process.argv[2] || process.env.TARGET_BRANCH || 'origin/dev';
+  const target = process.argv[2] || process.env.TARGET_BRANCH || 'test-workflow';
   analyzeDiff(target);
 }

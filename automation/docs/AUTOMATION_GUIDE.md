@@ -3,10 +3,10 @@
 ## 1. Overview & Architecture
 
 This automation suite integrates:
-1. **AI-Powered Test Case Generation**: Automatically analyzes Git diffs in Pull Requests targeting `dev`, maps modified files to Happy Prancer application modules, and generates structured, schema-validated test cases.
+1. **AI-Powered Test Case Generation**: Automatically analyzes Git diffs in Pull Requests targeting `test-workflow`, maps modified files to Happy Prancer application modules, and generates structured, schema-validated test cases.
 2. **Playwright Script Generation**: Converts structured test cases into executable Playwright TypeScript tests using standard Page Object Models and accessible locators.
 3. **Pre-Merge Validation**: Validates JSON schema, TypeScript syntax, and Playwright test discovery prior to execution, preventing malformed or untrusted code execution.
-4. **Post-Merge Automated Testing**: Automatically triggers after merging into `dev`, runs regression and approved suites against merged code, and publishes diagnostic Playwright HTML and Excel (`.xlsx`) reports.
+4. **Post-Merge Automated Testing**: Automatically triggers after merging into `test-workflow`, runs regression and approved suites against merged code, and publishes diagnostic Playwright HTML and Excel (`.xlsx`) reports.
 5. **No External Deployed URL Dependency**: Preserves application security and stability by testing local and merged code directly without relying on external deployed endpoints.
 
 ---
@@ -78,26 +78,29 @@ The diff analyzer (`automation/scripts/analyze-diff.ts`) maps code modifications
 ## 4. Workflows & CI/CD Pipelines
 
 ### A. Pull Request Workflow (`ai-test-generation-pr.yml`)
-- **Trigger**: Pull requests targeting `dev` (`opened`, `reopened`, `synchronize`).
+- **Trigger**: Pull requests targeting `test-workflow` (`opened`, `reopened`, `synchronize`).
 - **Actions**:
-  1. Checks out PR code and fetches `dev`.
-  2. Compares Git diff between `dev` and PR head.
+  1. Checks out PR code and fetches `test-workflow`.
+  2. Compares Git diff between `test-workflow` and PR head.
   3. Generates structured test cases matching the JSON schema.
-  4. Converts cases to Playwright TypeScript specs.
-  5. Performs TypeScript syntax validation (`tsc --noEmit`).
-  6. Runs Playwright test discovery (`npx playwright test --list`).
-  7. Assesses environment availability (safely holds browser execution if live server is offline, avoiding false passes).
-  8. Generates formatted Excel report and GitHub step summary.
-  9. Uploads all generated artifacts.
+  4. Validates generated test cases using existing schema validation logic.
+  5. Assesses environment availability and compiles TypeScript specs.
+  6. Displays PR test cases summary in GitHub Actions step summary.
+  7. Uploads test cases artifact (`pr-generated-test-cases`).
 
 ### B. Post-Merge Workflow (`post-merge-automation.yml`)
-- **Trigger**: Push directly to `dev` (upon PR merge).
+- **Trigger**: Push directly to `test-workflow` (upon PR merge).
 - **Actions**:
-  1. Checks out merged code from `dev`.
+  1. Checks out merged code from `test-workflow`.
   2. Installs Chromium browser dependencies.
-  3. Identifies merge commit changes.
-  4. Executes Playwright test runner across regression and generated suites.
-  5. Captures failure screenshots and diagnostic traces.
+  3. Retrieves PR generated test cases artifact or generates them from merge commit.
+  4. Generates Playwright TypeScript specs (`generate-playwright.ts`).
+  5. Validates generated Playwright scripts and test discovery.
+  6. Executes Playwright test runner against HappyPrancer beta (`https://beta.happyprancer.com/`).
+  7. Captures failure screenshots, videos, and diagnostic traces.
+  8. Generates Playwright HTML report and formatted Excel spreadsheet.
+  9. Uploads diagnostic reports and artifacts (`reports/`, `playwright-report/`, `test-results/`).
+  10. Displays execution summary with status, pass/fail counts, and artifact locations.
   6. Generates Playwright HTML report and formatted Excel spreadsheet.
   7. Uploads diagnostic reports and artifacts (`reports/`, `playwright-report/`).
 

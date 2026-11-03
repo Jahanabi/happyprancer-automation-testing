@@ -54,7 +54,7 @@ export function validateTestCase(tc: RawTestCase, index: number): string[] {
 
 export async function generateTestCases(): Promise<TestCaseCollection> {
   console.log('[generate-test-cases] Step 1: Analyzing diff and mapping modules...');
-  const targetBranch = process.env.TARGET_BRANCH || 'origin/dev';
+  const targetBranch = process.env.TARGET_BRANCH || 'test-workflow';
   const diffAnalysis = analyzeDiff(targetBranch);
 
   console.log(`[generate-test-cases] Step 2: Requesting test cases from AI Provider: ${process.env.AI_PROVIDER || 'offline'}...`);

@@ -4,7 +4,7 @@ on:
   pull_request:
     types: [opened, reopened, synchronize]
     branches:
-      - test/playwright-workflow-validation
+      - test-workflow
 
 permissions:
   contents: read
@@ -25,8 +25,9 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Fetch Target Branch (test/playwright-workflow-validation)
-        run: git fetch origin test/playwright-workflow-validation:test/playwright-workflow-validation || true
+      - name: Fetch Target Branch (test-workflow)
+        run: |
+          git fetch origin test-workflow:test-workflow || git fetch origin test-workflow || true
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -45,15 +46,53 @@ jobs:
           AI_PROVIDER: ${{ secrets.AI_PROVIDER || 'offline' }}
           AI_API_KEY: ${{ secrets.AI_API_KEY }}
           AI_MODEL: ${{ secrets.AI_MODEL || 'gpt-4o-mini' }}
-          TARGET_BRANCH: test/playwright-workflow-validation
+          TARGET_BRANCH: test-workflow
           PR_NUMBER: ${{ github.event.pull_request.number }}
         run: |
           node automation/dist/automation/scripts/generate-test-cases.js
 
-      - name: Upload Test Cases Artifact
+      - name: Validate Generated Test Cases
+        env:
+          BASE_URL: https://beta.happyprancer.com
+        run: |
+          node automation/dist/automation/scripts/validate-generated-tests.js
+
+      - name: Display PR Test Case Summary
+        if: always()
+        run: |
+          node -e '
+            const fs = require("fs");
+            const file = "automation/test-cases/generated/latest-test-cases.json";
+            if (fs.existsSync(file)) {
+              const data = JSON.parse(fs.readFileSync(file, "utf8"));
+              let md = "### 📋 AI Test Cases Generated for PR #" + (data.metadata?.prNumber || "${{ github.event.pull_request.number }}") + "\n\n";
+              md += "- **Target Branch**: `" + (data.metadata?.targetBranch || "test-workflow") + "`\n";
+              md += "- **AI Provider**: `" + (data.metadata?.aiProvider || "offline") + "`\n";
+              md += "- **Total Test Cases**: " + (data.testCases?.length || 0) + "\n";
+              md += "- **Affected Modules**: " + ((data.metadata?.affectedModules || []).join(", ") || "None") + "\n\n";
+              md += "| ID | Module | Feature | Scenario | Priority | Type |\n";
+              md += "| :--- | :--- | :--- | :--- | :--- | :--- |\n";
+              for (const tc of (data.testCases || [])) {
+                md += `| ${tc.id} | ${tc.module} | ${tc.feature} | ${tc.scenario.replace(/\|/g, "\\|")} | ${tc.priority} | ${tc.testType} |\n`;
+              }
+              const summaryFile = process.env.GITHUB_STEP_SUMMARY;
+              if (summaryFile) fs.appendFileSync(summaryFile, "\n" + md + "\n");
+              console.log(md);
+            }
+          '
+
+      - name: Upload PR-Specific Test Cases Artifact
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: pr-generated-test-cases
+          name: pr-test-cases-${{ github.event.pull_request.number }}
           path: automation/test-cases/generated/
+          retention-days: 14
+
+      - name: Upload PR Reports Artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr-validation-reports-${{ github.event.pull_request.number }}
+          path: reports/
           retention-days: 14

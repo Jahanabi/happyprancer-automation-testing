@@ -1,9 +1,9 @@
 {
   "metadata": {
-    "generatedAt": "2026-10-29T08:11:17.290Z",
+    "generatedAt": "2026-11-03T07:03:00.480Z",
     "prNumber": null,
     "commitSha": null,
-    "targetBranch": "origin/test/playwright-workflow-validation",
+    "targetBranch": "test-workflow",
     "totalCases": 6,
     "affectedModules": [
       "login",
