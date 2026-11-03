@@ -148,13 +148,13 @@ jobs:
           BASE_URL: https://beta.happyprancer.com
         run: npx playwright test --project=chromium
 
-      - name: Generate Playwright HTML & Excel Reports
+      - name: Generate Playwright HTML & Excel Execution Reports
         if: always()
         env:
           BASE_URL: https://beta.happyprancer.com
           TARGET_BRANCH: test-workflow
         run: |
-          node automation/dist/automation/scripts/export-excel-report.js
+          node automation/dist/automation/scripts/export-excel-report.js --execution
 
       - name: Display Test Execution Summary
         if: always()
@@ -165,20 +165,28 @@ jobs:
             echo "Execution summary report not found."
           fi
 
-      - name: Upload Test Reports & Artifacts
+      - name: Upload Final Excel Execution Report
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: happyprancer-post-merge-reports
+          name: happyprancer-excel-execution-report
+          path: reports/excel/Playwright_Execution_Report.xlsx
+          retention-days: 30
+
+      - name: Upload Playwright HTML Report & Debugging Artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: happyprancer-playwright-html-and-traces
           path: |
-            reports/
             playwright-report/
             test-results/
+            reports/playwright-results.json
           retention-days: 30
 
       - name: Verify Overall Test Results
         if: steps.run_tests.outcome != 'success'
         run: |
           echo "❌ One or more Playwright tests failed against https://beta.happyprancer.com"
-          echo "Review the uploaded artifacts and Playwright HTML report for failure diagnostics."
+          echo "Review the uploaded Excel report and Playwright HTML report for failure diagnostics."
           exit 1
