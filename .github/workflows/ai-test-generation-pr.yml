@@ -57,6 +57,12 @@ jobs:
         run: |
           node automation/dist/automation/scripts/validate-generated-tests.js
 
+      - name: Generate PR Test Cases Excel Report (PR_Test_Cases.xlsx)
+        env:
+          TARGET_BRANCH: test-workflow
+        run: |
+          node automation/dist/automation/scripts/export-excel-report.js --pr
+
       - name: Display PR Test Case Summary
         if: always()
         run: |
@@ -69,11 +75,12 @@ jobs:
               md += "- **Target Branch**: `" + (data.metadata?.targetBranch || "test-workflow") + "`\n";
               md += "- **AI Provider**: `" + (data.metadata?.aiProvider || "offline") + "`\n";
               md += "- **Total Test Cases**: " + (data.testCases?.length || 0) + "\n";
+              md += "- **Excel Report**: `PR_Test_Cases.xlsx`\n";
               md += "- **Affected Modules**: " + ((data.metadata?.affectedModules || []).join(", ") || "None") + "\n\n";
-              md += "| ID | Module | Feature | Scenario | Priority | Type |\n";
-              md += "| :--- | :--- | :--- | :--- | :--- | :--- |\n";
+              md += "| Test Case ID | Feature | Objective | Expected Result | Actual Result | Status | Type of Testing | Priority |\n";
+              md += "| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |\n";
               for (const tc of (data.testCases || [])) {
-                md += `| ${tc.id} | ${tc.module} | ${tc.feature} | ${tc.scenario.replace(/\|/g, "\\|")} | ${tc.priority} | ${tc.testType} |\n`;
+                md += `| ${tc.id} | ${tc.feature || tc.module} | ${tc.scenario.replace(/\|/g, "\\|")} | ${tc.expectedResult.replace(/\|/g, "\\|")} | Not Executed | Pending | ${tc.testType || "Positive"} | ${tc.priority || "Medium"} |\n`;
               }
               const summaryFile = process.env.GITHUB_STEP_SUMMARY;
               if (summaryFile) fs.appendFileSync(summaryFile, "\n" + md + "\n");
@@ -81,7 +88,7 @@ jobs:
             }
           '
 
-      - name: Upload PR-Specific Test Cases Artifact
+      - name: Upload PR Test Cases Package (JSON & Excel)
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -89,7 +96,15 @@ jobs:
           path: automation/test-cases/generated/
           retention-days: 14
 
-      - name: Upload PR Reports Artifact
+      - name: Upload PR Excel Report Directly
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr-excel-report-${{ github.event.pull_request.number }}
+          path: reports/excel/PR_Test_Cases.xlsx
+          retention-days: 14
+
+      - name: Upload PR Validation Reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
