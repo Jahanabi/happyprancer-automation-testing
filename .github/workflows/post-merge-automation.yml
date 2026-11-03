@@ -1,12 +1,15 @@
 name: Post-Merge Playwright Test Automation
 
 on:
-  push:
+  pull_request:
+    types: [closed]
     branches:
-      - test/playwright-workflow-validation
+      - test-workflow
+  workflow_dispatch:
 
 permissions:
   contents: read
+  actions: read
 
 concurrency:
   group: post-merge-tests-${{ github.ref }}
@@ -16,13 +19,15 @@ jobs:
   post-merge-test-execution:
     name: Generate Scripts & Execute Tests
     runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
     timeout-minutes: 30
 
     steps:
       - name: Checkout Merged Code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 2
+          ref: test-workflow
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -39,31 +44,103 @@ jobs:
       - name: Compile Automation Scripts
         run: npx tsc --project tsconfig.automation.json
 
-      - name: Check Deploy Status
+      - name: Retrieve Exact PR Test Cases (or Fallback Generate)
         env:
           GH_TOKEN: ${{ github.token }}
+          AI_PROVIDER: ${{ secrets.AI_PROVIDER || 'offline' }}
+          AI_API_KEY: ${{ secrets.AI_API_KEY }}
+          AI_MODEL: ${{ secrets.AI_MODEL || 'gpt-4o-mini' }}
+          TARGET_BRANCH: test-workflow
         run: |
-          echo "Checking if 'Deploy to S3' is currently in progress..."
-          DEPLOY_RUN_ID=$(gh run list --workflow="Deploy to S3" --branch dev --limit 1 --json databaseId,status --jq '.[] | select(.status != "completed") | .databaseId' || echo "")
-          if [ -n "$DEPLOY_RUN_ID" ]; then
-            echo "Waiting for 'Deploy to S3' (Run ID: $DEPLOY_RUN_ID) to complete..."
-            gh run watch "$DEPLOY_RUN_ID" --interval 10 --timeout 600 || true
-          else
-            echo "No active deploy run in progress. Target website is ready."
+          PR_NUM="${{ github.event.pull_request.number }}"
+          HEAD_SHA="${{ github.event.pull_request.head.sha }}"
+          HEAD_BRANCH="${{ github.event.pull_request.head.ref }}"
+
+          # If triggered without PR context (e.g. workflow_dispatch), extract PR number from latest merge commit
+          if [ -z "$PR_NUM" ] || [ "$PR_NUM" = "null" ]; then
+            PR_NUM=$(git log -1 --pretty=%B | grep -oE '#[0-9]+' | head -1 | tr -d '#')
+          fi
+
+          echo "=================================================="
+          echo "Processing post-merge automation for PR: #${PR_NUM:-unknown}"
+          echo "Head SHA: ${HEAD_SHA:-unknown}"
+          echo "Head Branch: ${HEAD_BRANCH:-unknown}"
+          echo "=================================================="
+
+          mkdir -p automation/test-cases/generated
+          RETRIEVED=false
+
+          # 1. Attempt to retrieve the exact PR's generated test cases artifact
+          if [ -n "$PR_NUM" ] && [ "$PR_NUM" != "null" ]; then
+            echo "Searching for workflow run belonging specifically to PR #$PR_NUM..."
+
+            # Locate run matching exact commit SHA or branch
+            PR_RUN_ID=""
+            if [ -n "$HEAD_SHA" ] && [ "$HEAD_SHA" != "null" ]; then
+              PR_RUN_ID=$(gh run list --workflow="ai-test-generation-pr.yml" --limit 20 --json databaseId,headSha --jq ".[] | select(.headSha == \"$HEAD_SHA\") | .databaseId" 2>/dev/null | head -n 1 || echo "")
+            fi
+
+            if [ -z "$PR_RUN_ID" ] && [ -n "$HEAD_BRANCH" ] && [ "$HEAD_BRANCH" != "null" ]; then
+              PR_RUN_ID=$(gh run list --workflow="ai-test-generation-pr.yml" --branch "$HEAD_BRANCH" --limit 5 --json databaseId --jq '.[0].databaseId' 2>/dev/null || echo "")
+            fi
+
+            if [ -z "$PR_RUN_ID" ]; then
+              PR_RUN_ID=$(gh run list --workflow="ai-test-generation-pr.yml" --limit 10 --json databaseId --jq '.[0].databaseId' 2>/dev/null || echo "")
+            fi
+
+            # Download exact PR artifact: pr-test-cases-<PR_NUM>
+            if [ -n "$PR_RUN_ID" ] && [ "$PR_RUN_ID" != "null" ]; then
+              echo "Found matching PR workflow run ID: $PR_RUN_ID for PR #$PR_NUM."
+              echo "Downloading exact PR artifact 'pr-test-cases-$PR_NUM'..."
+              if gh run download "$PR_RUN_ID" --name "pr-test-cases-$PR_NUM" --dir automation/test-cases/generated 2>/dev/null; then
+                if [ -f "automation/test-cases/generated/latest-test-cases.json" ] && [ -s "automation/test-cases/generated/latest-test-cases.json" ]; then
+                  echo "Successfully retrieved latest-test-cases.json from exact PR artifact 'pr-test-cases-$PR_NUM'."
+                  RETRIEVED=true
+                fi
+              fi
+
+              # Secondary check for standard artifact name on that exact PR run
+              if [ "$RETRIEVED" = "false" ]; then
+                echo "Checking for 'pr-generated-test-cases' on run $PR_RUN_ID..."
+                if gh run download "$PR_RUN_ID" --name "pr-generated-test-cases" --dir automation/test-cases/generated 2>/dev/null; then
+                  if [ -f "automation/test-cases/generated/latest-test-cases.json" ] && [ -s "automation/test-cases/generated/latest-test-cases.json" ]; then
+                    echo "Successfully retrieved latest-test-cases.json from run $PR_RUN_ID."
+                    RETRIEVED=true
+                  fi
+                fi
+              fi
+            else
+              echo "No matching PR workflow run found for PR #$PR_NUM."
+            fi
+          fi
+
+          # 2. If the exact PR artifact could not be retrieved, clearly log fallback and generate from merge commit
+          if [ "$RETRIEVED" = "false" ]; then
+            echo "--------------------------------------------------"
+            echo "[FALLBACK ACTIVATED] Could not retrieve artifact from PR #${PR_NUM:-unknown}."
+            echo "Reason: Artifact 'pr-test-cases-${PR_NUM}' was not found or PR run unavailable."
+            echo "Executing existing fallback test generation logic from merge commit (HEAD~1)..."
+            echo "--------------------------------------------------"
+            TARGET_BRANCH=HEAD~1 node automation/dist/automation/scripts/generate-test-cases.js
+            if [ -f "automation/test-cases/generated/latest-test-cases.json" ] && [ -s "automation/test-cases/generated/latest-test-cases.json" ]; then
+              echo "[FALLBACK SUCCESS] Successfully generated test cases from merge commit diff."
+            else
+              echo "[ERROR] Fallback test generation did not produce latest-test-cases.json."
+              exit 1
+            fi
           fi
 
       - name: Generate Playwright TypeScript Tests
         run: |
-          if [ ! -f "automation/test-cases/generated/latest-test-cases.json" ]; then
-            echo "latest-test-cases.json not found in repository. Generating from merge commit..."
-            TARGET_BRANCH=HEAD~1 node automation/dist/automation/scripts/generate-test-cases.js
-          fi
           node automation/dist/automation/scripts/generate-playwright.js
 
-      - name: Discover and Validate Tests
-        run: npx playwright test --list
+      - name: Validate Generated Playwright Scripts & Test Discovery
+        env:
+          BASE_URL: https://beta.happyprancer.com
+        run: |
+          node automation/dist/automation/scripts/validate-generated-tests.js
 
-      - name: Run Playwright Tests on HappyPrancer Test Environment
+      - name: Run Playwright Tests on HappyPrancer Beta Environment
         id: run_tests
         continue-on-error: true
         env:
@@ -75,10 +152,20 @@ jobs:
         if: always()
         env:
           BASE_URL: https://beta.happyprancer.com
+          TARGET_BRANCH: test-workflow
         run: |
           node automation/dist/automation/scripts/export-excel-report.js
 
-      - name: Upload Test Reports
+      - name: Display Test Execution Summary
+        if: always()
+        run: |
+          if [ -f "reports/execution-summary.md" ]; then
+            cat reports/execution-summary.md
+          else
+            echo "Execution summary report not found."
+          fi
+
+      - name: Upload Test Reports & Artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -89,8 +176,9 @@ jobs:
             test-results/
           retention-days: 30
 
-      - name: Check Test Results
-        if: steps.run_tests.outcome == 'failure'
+      - name: Verify Overall Test Results
+        if: steps.run_tests.outcome != 'success'
         run: |
-          echo "One or more Playwright tests failed against https://beta.happyprancer.com"
+          echo "❌ One or more Playwright tests failed against https://beta.happyprancer.com"
+          echo "Review the uploaded artifacts and Playwright HTML report for failure diagnostics."
           exit 1

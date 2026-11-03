@@ -157,7 +157,7 @@ export async function exportExcelReport(): Promise<string> {
   const summaryData = [
     { metric: 'Project Name', value: 'Happy Prancer Test Automation' },
     { metric: 'Execution Timestamp', value: new Date().toISOString() },
-    { metric: 'Target Branch', value: collection?.metadata?.targetBranch || 'dev' },
+    { metric: 'Target Branch', value: collection?.metadata?.targetBranch || process.env.TARGET_BRANCH || 'test-workflow' },
     { metric: 'AI Generator Provider', value: collection?.metadata?.aiProvider || 'offline' },
     { metric: 'Total Test Cases', value: total },
     { metric: 'Passed Tests', value: passed },
@@ -165,7 +165,7 @@ export async function exportExcelReport(): Promise<string> {
     { metric: 'Skipped Tests', value: skipped },
     { metric: 'Pending / Not Run', value: notRun },
     { metric: 'Pass Rate', value: passRate },
-    { metric: 'Execution Environment', value: process.env.BASE_URL || 'http://localhost:3000' },
+    { metric: 'Execution Environment', value: process.env.BASE_URL || 'https://beta.happyprancer.com/' },
   ];
 
   summaryData.forEach((row) => summarySheet.addRow(row));
@@ -250,16 +250,31 @@ export async function exportExcelReport(): Promise<string> {
 
   console.log(`[export-excel-report] Successfully exported Excel report to: ${outputFilePath}`);
 
-  // Also write concise markdown summary
-  const summaryMd = `### 📊 Happy Prancer Automation Execution Report
+  // Determine execution status
+  const execStatus = failed > 0 ? 'FAILED' : total > 0 && passed === total ? 'PASSED' : 'COMPLETED_WITH_WARNINGS';
+  const execStatusBadge = failed > 0 ? '❌ FAILED' : total > 0 && passed === total ? '✅ PASSED' : '⚠️ COMPLETED WITH WARNINGS';
 
-- **Total Tests**: ${total}
-- **Passed**: ${passed} ✅
-- **Failed**: ${failed} ❌
-- **Skipped**: ${skipped} ⚠️
-- **Not Run / Standby**: ${notRun} ⏳
-- **Pass Rate**: **${passRate}**
-- **Excel Report**: Saved to \`${outputFilePath}\`
+  // Build comprehensive markdown summary
+  const summaryMd = `### 📊 Happy Prancer Playwright Test Execution Summary
+
+| Metric | Value |
+| :--- | :--- |
+| **Execution Status** | **${execStatusBadge}** |
+| **Target Branch** | \`${collection?.metadata?.targetBranch || process.env.TARGET_BRANCH || 'test-workflow'}\` |
+| **Target Environment** | ${process.env.BASE_URL || 'https://beta.happyprancer.com/'} |
+| **Total Test Cases** | ${total} |
+| **Passed Tests** | ${passed} ✅ |
+| **Failed Tests** | ${failed} ❌ |
+| **Skipped Tests** | ${skipped} ⚠️ |
+| **Pending / Standby** | ${notRun} ⏳ |
+| **Pass Rate** | **${passRate}** |
+
+#### 📁 Generated Reports & Artifact Locations
+- **Excel Detailed Report**: \`reports/excel/HappyPrancer_Automation_Report.xlsx\`
+- **Playwright HTML Report**: \`playwright-report/index.html\`
+- **Playwright JSON Results**: \`reports/playwright-results.json\`
+- **Execution Artifacts (Videos/Traces/Screenshots)**: \`test-results/\`
+- **GitHub Actions Artifact Package**: \`happyprancer-post-merge-reports\`
 `;
 
   const reportsDir = path.resolve(process.cwd(), 'reports');
@@ -269,6 +284,8 @@ export async function exportExcelReport(): Promise<string> {
   if (stepSummary) {
     fs.appendFileSync(stepSummary, `\n${summaryMd}\n`);
   }
+
+  console.log(summaryMd);
 
   return outputFilePath;
 }

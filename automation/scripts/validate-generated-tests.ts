@@ -25,7 +25,7 @@ export async function validateGeneratedTests(): Promise<ValidationSummary> {
     discoveryValidation: { passed: false, discoveredCount: 0, message: '' },
     environmentCheck: {
       available: false,
-      baseUrl: process.env.BASE_URL || 'http://localhost:3000',
+      baseUrl: process.env.BASE_URL || 'https://beta.happyprancer.com/',
       message: '',
     },
     executionStatus: 'VALIDATION_FAILED',
@@ -97,8 +97,8 @@ export async function validateGeneratedTests(): Promise<ValidationSummary> {
     console.error('[validate-generated-tests] Playwright test discovery failed:', summary.discoveryValidation.message);
   }
 
-  // 4. Check whether local test environment (web server) is reachable
-  const baseUrl = process.env.BASE_URL || 'http://localhost:3000';
+  // 4. Check whether test environment is reachable
+  const baseUrl = process.env.BASE_URL || 'https://beta.happyprancer.com/';
   try {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 2000);
@@ -151,7 +151,12 @@ export async function validateGeneratedTests(): Promise<ValidationSummary> {
 }
 
 if (require.main === module) {
-  validateGeneratedTests().catch((err) => {
+  validateGeneratedTests().then((summary) => {
+    if (summary.executionStatus === 'VALIDATION_FAILED') {
+      console.error('[validate-generated-tests] Validation failed: One or more validation checks did not pass.');
+      process.exit(1);
+    }
+  }).catch((err) => {
     console.error('[validate-generated-tests] Execution error:', err);
     process.exit(1);
   });

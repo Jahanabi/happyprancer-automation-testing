@@ -103,7 +103,13 @@ export async function generatePlaywrightScripts(): Promise<string[]> {
   const collection: TestCaseCollection = JSON.parse(content);
 
   const testsGeneratedDir = path.resolve(process.cwd(), 'automation/tests/generated');
-  if (!fs.existsSync(testsGeneratedDir)) {
+  if (fs.existsSync(testsGeneratedDir)) {
+    // Clean previously generated spec files to ensure only current PR test cases are executed
+    const existing = fs.readdirSync(testsGeneratedDir).filter((f) => f.startsWith('generated-') && f.endsWith('.spec.ts'));
+    for (const file of existing) {
+      fs.unlinkSync(path.join(testsGeneratedDir, file));
+    }
+  } else {
     fs.mkdirSync(testsGeneratedDir, { recursive: true });
   }
 
