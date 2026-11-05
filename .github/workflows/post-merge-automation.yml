@@ -134,6 +134,7 @@ jobs:
       - name: Validate Generated Playwright Scripts & Test Discovery
         env:
           BASE_URL: https://beta.happyprancer.com
+          LOGIN_URL: https://beta.happyprancer.com/login
           SIGNUP_URL: https://beta.happyprancer.com/signup
         run: |
           node automation/dist/automation/scripts/validate-generated-tests.js
@@ -144,6 +145,7 @@ jobs:
         env:
           CI: 'true'
           BASE_URL: https://beta.happyprancer.com
+          LOGIN_URL: https://beta.happyprancer.com/login
           SIGNUP_URL: https://beta.happyprancer.com/signup
           AUTH_TEST_DASHBOARD_URL: https://beta.happyprancer.com/dashboard
           LOGIN_EMAIL: ${{ secrets.LOGIN_EMAIL }}

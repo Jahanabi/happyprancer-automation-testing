@@ -55,6 +55,8 @@ jobs:
       - name: Validate Generated Test Cases
         env:
           BASE_URL: https://beta.happyprancer.com
+          LOGIN_URL: https://beta.happyprancer.com/login
+          SIGNUP_URL: https://beta.happyprancer.com/signup
         run: |
           node automation/dist/automation/scripts/validate-generated-tests.js
 

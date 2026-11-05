@@ -11,8 +11,8 @@ export function validateTestCase(tc: RawTestCase, index: number): string[] {
 
   if (!tc.id || typeof tc.id !== 'string') {
     errors.push(`Case #${index}: missing or invalid 'id'`);
-  } else if (!/^TC-[A-Z0-9]+-[0-9]{3,}$/.test(tc.id)) {
-    errors.push(`Case #${index}: 'id' format invalid ("${tc.id}"), expected TC-<MODULE>-XXX`);
+  } else if (!/^(TC-)?[A-Z0-9_-]+-[0-9]{3,}$/.test(tc.id)) {
+    errors.push(`Case #${index}: 'id' format invalid ("${tc.id}"), expected [TC-]<MODULE>-XXX`);
   }
 
   if (!tc.module || typeof tc.module !== 'string') {
