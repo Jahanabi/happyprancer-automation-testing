@@ -41,11 +41,12 @@ jobs:
       - name: Compile Automation Scripts
         run: npx tsc --project tsconfig.automation.json
 
-      - name: Analyze Git Diff & Generate Structured Test Cases
+      - name: Analyze Git Diff & Generate Structured Test Cases via Gemini
         env:
-          AI_PROVIDER: ${{ secrets.AI_PROVIDER || 'offline' }}
+          AI_PROVIDER: ${{ secrets.AI_PROVIDER || 'gemini' }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           AI_API_KEY: ${{ secrets.AI_API_KEY }}
-          AI_MODEL: ${{ secrets.AI_MODEL || 'gpt-4o-mini' }}
+          AI_MODEL: ${{ secrets.AI_MODEL || 'gemini-1.5-flash' }}
           TARGET_BRANCH: test-workflow
           PR_NUMBER: ${{ github.event.pull_request.number }}
         run: |
@@ -57,7 +58,7 @@ jobs:
         run: |
           node automation/dist/automation/scripts/validate-generated-tests.js
 
-      - name: Generate PR Test Cases Excel Report (PR_Test_Cases.xlsx)
+      - name: Generate Pre-Merge Test Cases Excel Report (PR_Test_Cases.xlsx)
         env:
           TARGET_BRANCH: test-workflow
         run: |
@@ -75,12 +76,12 @@ jobs:
               md += "- **Target Branch**: `" + (data.metadata?.targetBranch || "test-workflow") + "`\n";
               md += "- **AI Provider**: `" + (data.metadata?.aiProvider || "offline") + "`\n";
               md += "- **Total Test Cases**: " + (data.testCases?.length || 0) + "\n";
-              md += "- **Excel Report**: `PR_Test_Cases.xlsx`\n";
+              md += "- **Pre-Merge Excel Report**: `PR_Test_Cases.xlsx`\n";
               md += "- **Affected Modules**: " + ((data.metadata?.affectedModules || []).join(", ") || "None") + "\n\n";
-              md += "| Test Case ID | Feature | Objective | Expected Result | Actual Result | Status | Type of Testing | Priority |\n";
-              md += "| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |\n";
+              md += "| Test Case ID | Feature | Objective | Expected Result |\n";
+              md += "| :--- | :--- | :--- | :--- |\n";
               for (const tc of (data.testCases || [])) {
-                md += `| ${tc.id} | ${tc.feature || tc.module} | ${tc.scenario.replace(/\|/g, "\\|")} | ${tc.expectedResult.replace(/\|/g, "\\|")} | Not Executed | Pending | ${tc.testType || "Positive"} | ${tc.priority || "Medium"} |\n`;
+                md += `| ${tc.id} | ${tc.feature || tc.module} | ${tc.scenario.replace(/\|/g, "\\|")} | ${tc.expectedResult.replace(/\|/g, "\\|")} |\n`;
               }
               const summaryFile = process.env.GITHUB_STEP_SUMMARY;
               if (summaryFile) fs.appendFileSync(summaryFile, "\n" + md + "\n");
@@ -96,7 +97,7 @@ jobs:
           path: automation/test-cases/generated/
           retention-days: 14
 
-      - name: Upload PR Excel Report Directly
+      - name: Upload Pre-Merge Excel Report Directly
         if: always()
         uses: actions/upload-artifact@v4
         with:

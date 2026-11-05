@@ -47,16 +47,16 @@ jobs:
       - name: Retrieve Exact PR Test Cases (or Fallback Generate)
         env:
           GH_TOKEN: ${{ github.token }}
-          AI_PROVIDER: ${{ secrets.AI_PROVIDER || 'offline' }}
+          AI_PROVIDER: ${{ secrets.AI_PROVIDER || 'gemini' }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           AI_API_KEY: ${{ secrets.AI_API_KEY }}
-          AI_MODEL: ${{ secrets.AI_MODEL || 'gpt-4o-mini' }}
+          AI_MODEL: ${{ secrets.AI_MODEL || 'gemini-1.5-flash' }}
           TARGET_BRANCH: test-workflow
         run: |
           PR_NUM="${{ github.event.pull_request.number }}"
           HEAD_SHA="${{ github.event.pull_request.head.sha }}"
           HEAD_BRANCH="${{ github.event.pull_request.head.ref }}"
 
-          # If triggered without PR context (e.g. workflow_dispatch), extract PR number from latest merge commit
           if [ -z "$PR_NUM" ] || [ "$PR_NUM" = "null" ]; then
             PR_NUM=$(git log -1 --pretty=%B | grep -oE '#[0-9]+' | head -1 | tr -d '#')
           fi
@@ -74,7 +74,6 @@ jobs:
           if [ -n "$PR_NUM" ] && [ "$PR_NUM" != "null" ]; then
             echo "Searching for workflow run belonging specifically to PR #$PR_NUM..."
 
-            # Locate run matching exact commit SHA or branch
             PR_RUN_ID=""
             if [ -n "$HEAD_SHA" ] && [ "$HEAD_SHA" != "null" ]; then
               PR_RUN_ID=$(gh run list --workflow="ai-test-generation-pr.yml" --limit 20 --json databaseId,headSha --jq ".[] | select(.headSha == \"$HEAD_SHA\") | .databaseId" 2>/dev/null | head -n 1 || echo "")
@@ -88,7 +87,6 @@ jobs:
               PR_RUN_ID=$(gh run list --workflow="ai-test-generation-pr.yml" --limit 10 --json databaseId --jq '.[0].databaseId' 2>/dev/null || echo "")
             fi
 
-            # Download exact PR artifact: pr-test-cases-<PR_NUM>
             if [ -n "$PR_RUN_ID" ] && [ "$PR_RUN_ID" != "null" ]; then
               echo "Found matching PR workflow run ID: $PR_RUN_ID for PR #$PR_NUM."
               echo "Downloading exact PR artifact 'pr-test-cases-$PR_NUM'..."
@@ -99,7 +97,6 @@ jobs:
                 fi
               fi
 
-              # Secondary check for standard artifact name on that exact PR run
               if [ "$RETRIEVED" = "false" ]; then
                 echo "Checking for 'pr-generated-test-cases' on run $PR_RUN_ID..."
                 if gh run download "$PR_RUN_ID" --name "pr-generated-test-cases" --dir automation/test-cases/generated 2>/dev/null; then
@@ -114,7 +111,7 @@ jobs:
             fi
           fi
 
-          # 2. If the exact PR artifact could not be retrieved, clearly log fallback and generate from merge commit
+          # 2. Fallback: generate test cases directly from merge commit
           if [ "$RETRIEVED" = "false" ]; then
             echo "--------------------------------------------------"
             echo "[FALLBACK ACTIVATED] Could not retrieve artifact from PR #${PR_NUM:-unknown}."
@@ -130,13 +127,14 @@ jobs:
             fi
           fi
 
-      - name: Generate Playwright TypeScript Tests
+      - name: Generate Playwright TypeScript Tests from Exact PR Test Cases
         run: |
           node automation/dist/automation/scripts/generate-playwright.js
 
       - name: Validate Generated Playwright Scripts & Test Discovery
         env:
           BASE_URL: https://beta.happyprancer.com
+          SIGNUP_URL: https://beta.happyprancer.com/signup
         run: |
           node automation/dist/automation/scripts/validate-generated-tests.js
 
@@ -146,9 +144,19 @@ jobs:
         env:
           CI: 'true'
           BASE_URL: https://beta.happyprancer.com
+          SIGNUP_URL: https://beta.happyprancer.com/signup
+          AUTH_TEST_DASHBOARD_URL: https://beta.happyprancer.com/dashboard
+          LOGIN_EMAIL: ${{ secrets.LOGIN_EMAIL }}
+          LOGIN_PASSWORD: ${{ secrets.LOGIN_PASSWORD }}
+          SIGNUP_NAME: ${{ secrets.SIGNUP_NAME || 'Test User' }}
+          SIGNUP_EMAIL: ${{ secrets.SIGNUP_EMAIL || 'testuser@example.com' }}
+          SIGNUP_PHONE: ${{ secrets.SIGNUP_PHONE || '9876543210' }}
+          SIGNUP_PASSWORD: ${{ secrets.SIGNUP_PASSWORD || 'Test@1234' }}
+          SIGNUP_CONFIRM_PASSWORD: ${{ secrets.SIGNUP_CONFIRM_PASSWORD || 'Test@1234' }}
+          SIGNUP_REFERRAL_CODE: ${{ secrets.SIGNUP_REFERRAL_CODE || 'HPWELCOME' }}
         run: npx playwright test --project=chromium
 
-      - name: Generate Playwright HTML & Excel Execution Reports
+      - name: Generate Playwright HTML & Post-Merge Excel Execution Reports
         if: always()
         env:
           BASE_URL: https://beta.happyprancer.com
@@ -165,15 +173,45 @@ jobs:
             echo "Execution summary report not found."
           fi
 
-      - name: Upload Final Excel Execution Report
+      - name: Stage Artifacts (playwright-artifacts)
+        if: always()
+        run: |
+          mkdir -p playwright-artifacts/reports
+          mkdir -p playwright-artifacts/generated-scripts
+          mkdir -p playwright-artifacts/supporting-files
+
+          # Copy Excel and HTML reports
+          cp reports/excel/*.xlsx playwright-artifacts/reports/ 2>/dev/null || true
+          cp -r playwright-report/ playwright-artifacts/reports/html-report 2>/dev/null || true
+          cp reports/playwright-results.json playwright-artifacts/reports/ 2>/dev/null || true
+
+          # Copy generated test scripts
+          cp automation/tests/generated/*.spec.ts playwright-artifacts/generated-scripts/ 2>/dev/null || true
+          cp automation/tests/e2e/*.spec.ts playwright-artifacts/generated-scripts/ 2>/dev/null || true
+
+          # Copy supporting POMs and fixtures
+          cp -r automation/page-objects/ playwright-artifacts/supporting-files/page-objects 2>/dev/null || true
+          cp -r automation/pages/ playwright-artifacts/supporting-files/pages 2>/dev/null || true
+          cp -r automation/fixtures/ playwright-artifacts/supporting-files/fixtures 2>/dev/null || true
+          cp playwright.config.ts playwright-artifacts/supporting-files/ 2>/dev/null || true
+
+      - name: Upload Downloadable Playwright Test Artifacts Package
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: happyprancer-excel-execution-report
-          path: reports/excel/Playwright_Execution_Report.xlsx
+          name: playwright-artifacts
+          path: playwright-artifacts/
           retention-days: 30
 
-      - name: Upload Playwright HTML Report & Debugging Artifacts
+      - name: Upload Post-Merge Excel Execution Report Directly
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-execution-report
+          path: reports/excel/playwright-execution-report.xlsx
+          retention-days: 30
+
+      - name: Upload Playwright HTML Report & Traces
         if: always()
         uses: actions/upload-artifact@v4
         with:
