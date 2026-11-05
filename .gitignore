@@ -149,3 +149,6 @@ playwright-report/
 automation/dist/
 reports/
 
+.env
+.env.*
+!.env.example

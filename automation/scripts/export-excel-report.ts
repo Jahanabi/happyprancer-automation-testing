@@ -3,17 +3,15 @@ import * as path from 'path';
 import ExcelJS from 'exceljs';
 import { TestCaseCollection, RawTestCase } from './ai-provider';
 
-export type TestStatus = 'Pass' | 'Fail' | 'Blocked' | 'Not Executed' | 'Pending';
+export type TestStatus = 'PASS' | 'FAIL' | 'SKIPPED' | 'NOT EXECUTED';
 
 export interface FormattedExcelRow {
   testCaseId: string;
   feature: string;
   objective: string;
   expectedResult: string;
-  actualResult: string;
-  status: TestStatus;
-  typeOfTesting: string;
-  priority: string;
+  actualResult?: string;
+  status?: TestStatus;
 }
 
 export interface ExcelReportOptions {
@@ -38,16 +36,16 @@ function cleanErrorMessage(msg?: string): string {
 }
 
 /**
- * Applies consistent professional formatting to the 8-column Test Cases worksheet
+ * Applies consistent professional styling to the Test Cases worksheet
  */
-function applyTableStyles(worksheet: ExcelJS.Worksheet) {
+function applyTableStyles(worksheet: ExcelJS.Worksheet, columnCount: number) {
   // Freeze header row and enable gridlines
   worksheet.views = [{ state: 'frozen', ySplit: 1, showGridLines: true }];
 
-  // Auto filter across the 8 columns
+  // Auto filter across the columns
   worksheet.autoFilter = {
     from: { row: 1, column: 1 },
-    to: { row: 1, column: 8 },
+    to: { row: 1, column: columnCount },
   };
 
   // Style Header Row
@@ -77,35 +75,26 @@ function applyTableStyles(worksheet: ExcelJS.Worksheet) {
       cell.border = thinBorder;
       cell.font = { name: 'Calibri', size: 10, color: { argb: 'FF1E293B' } };
 
-      // Alignments:
-      // Col 1: Test Case ID -> center
-      // Col 2: Feature -> left
-      // Col 3: Objective -> left, wrapText
-      // Col 4: Expected Result -> left, wrapText
-      // Col 5: Actual Result -> left, wrapText
-      // Col 6: Status -> center, bold
-      // Col 7: Type of Testing -> center
-      // Col 8: Priority -> center
-      if (colNumber === 1 || colNumber === 7 || colNumber === 8) {
+      if (colNumber === 1) {
+        // Test Case ID
         cell.alignment = { vertical: 'top', horizontal: 'center' };
+        cell.font = { name: 'Calibri', size: 10, bold: true, color: { argb: 'FF0F172A' } };
       } else if (colNumber === 6) {
+        // Status Column in 6-column execution mode
         cell.alignment = { vertical: 'top', horizontal: 'center' };
-        const val = String(cell.value || '');
-        if (val === 'Pass') {
+        const val = String(cell.value || '').toUpperCase();
+        if (val === 'PASS') {
           cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFD1FAE5' } };
           cell.font = { name: 'Calibri', size: 10, bold: true, color: { argb: 'FF065F46' } };
-        } else if (val === 'Fail') {
+        } else if (val === 'FAIL') {
           cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFFEE2E2' } };
           cell.font = { name: 'Calibri', size: 10, bold: true, color: { argb: 'FF991B1B' } };
-        } else if (val === 'Blocked') {
+        } else if (val === 'SKIPPED') {
           cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFFFEDD5' } };
           cell.font = { name: 'Calibri', size: 10, bold: true, color: { argb: 'FF9A3412' } };
-        } else if (val === 'Not Executed') {
+        } else if (val === 'NOT EXECUTED') {
           cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFFEF3C7' } };
           cell.font = { name: 'Calibri', size: 10, bold: true, color: { argb: 'FF92400E' } };
-        } else if (val === 'Pending') {
-          cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFE2E8F0' } };
-          cell.font = { name: 'Calibri', size: 10, bold: true, color: { argb: 'FF334155' } };
         }
       } else {
         cell.alignment = { vertical: 'top', horizontal: 'left', wrapText: true };
@@ -115,14 +104,15 @@ function applyTableStyles(worksheet: ExcelJS.Worksheet) {
 }
 
 /**
- * Generate Excel (.xlsx) Report using ExcelJS
+ * Generate Excel (.xlsx) Report:
+ * Pre-Merge Mode: 4 columns (| Test Case ID | Feature | Objective | Expected Result |)
+ * Post-Merge Mode: 6 columns (| Test Case ID | Feature | Objective | Expected Result | Actual Result | Status |)
  */
 export async function exportExcelReport(options?: Partial<ExcelReportOptions>): Promise<string> {
   const mode: 'pr' | 'execution' =
-    options?.mode ||
-    (process.argv.includes('--pr') ? 'pr' : 'execution');
+    options?.mode || (process.argv.includes('--pr') ? 'pr' : 'execution');
 
-  const defaultFileName = mode === 'pr' ? 'PR_Test_Cases.xlsx' : 'Playwright_Execution_Report.xlsx';
+  const defaultFileName = mode === 'pr' ? 'PR_Test_Cases.xlsx' : 'playwright-execution-report.xlsx';
   const fileName = options?.outputFileName || defaultFileName;
   const targetEnvironment = options?.baseUrl || process.env.BASE_URL || 'https://beta.happyprancer.com/';
   const targetBranch = options?.targetBranch || process.env.TARGET_BRANCH || 'test-workflow';
@@ -151,29 +141,28 @@ export async function exportExcelReport(options?: Partial<ExcelReportOptions>): 
   }
 
   // Parse Playwright test execution results
-  const executedTestMap = new Map<string, { status: string; duration: number; error?: string }>();
+  const executedTestMap = new Map<string, { status: 'PASSED' | 'FAILED' | 'SKIPPED'; duration: number; error?: string }>();
+
   if (playwrightResults && playwrightResults.suites) {
     function traverseSuites(suites: any[]) {
       for (const suite of suites) {
         if (suite.specs) {
           for (const spec of suite.specs) {
             const title = spec.title || '';
-            const match = title.match(/^(TC-[A-Z0-9]+-[0-9]{3,}|TC-[A-Z0-9]+-REG-[0-9]{3,})/i);
-            const id = match ? match[1].toUpperCase() : title;
+            const match = title.match(/^([A-Z0-9_-]+)\s*[-:]/i) || title.match(/^([A-Z0-9]+-[0-9]{3,})/i);
+            const id = match ? match[1].trim().toUpperCase() : title.trim();
 
             const testResult = spec.tests?.[0]?.results?.[0];
             const rawStatus = (testResult?.status || 'unknown').toLowerCase();
             const duration = testResult?.duration || 0;
             const error = testResult?.error?.message || testResult?.errors?.[0]?.message;
 
-            let mappedStatus: 'PASSED' | 'FAILED' | 'SKIPPED' | 'BLOCKED' = 'SKIPPED';
+            let mappedStatus: 'PASSED' | 'FAILED' | 'SKIPPED' = 'SKIPPED';
             if (rawStatus === 'passed') {
               mappedStatus = 'PASSED';
             } else if (rawStatus === 'failed' || rawStatus === 'timedout') {
               mappedStatus = 'FAILED';
-            } else if (rawStatus === 'interrupted') {
-              mappedStatus = 'BLOCKED';
-            } else if (rawStatus === 'skipped') {
+            } else {
               mappedStatus = 'SKIPPED';
             }
 
@@ -192,50 +181,40 @@ export async function exportExcelReport(options?: Partial<ExcelReportOptions>): 
     traverseSuites(playwrightResults.suites);
   }
 
-  // Build the unified 8-column records
   const records: FormattedExcelRow[] = [];
   const testCases: RawTestCase[] = collection?.testCases || [];
 
   if (mode === 'pr') {
-    // PR Mode: Newly generated test cases that have not yet been executed
+    // Pre-Merge PR Mode: 4 columns (| Test Case ID | Feature | Objective | Expected Result |)
     for (const tc of testCases) {
       records.push({
         testCaseId: tc.id,
         feature: tc.feature || tc.module,
         objective: tc.scenario,
         expectedResult: tc.expectedResult,
-        actualResult: 'Not Executed',
-        status: 'Pending',
-        typeOfTesting: tc.testType || 'Positive',
-        priority: tc.priority || 'Medium',
       });
     }
   } else {
-    // Post-Merge Execution Mode: Actual Playwright execution results
+    // Post-Merge Execution Mode: 6 columns (| Test Case ID | Feature | Objective | Expected Result | Actual Result | Status |)
     for (const tc of testCases) {
-      const exec = executedTestMap.get(tc.id.toUpperCase());
+      const tcKey = tc.id.toUpperCase();
+      const exec = executedTestMap.get(tcKey);
 
-      let status: TestStatus = 'Not Executed';
-      let actualResult = 'Not Executed: Awaiting test runner execution.';
+      let status: TestStatus = 'NOT EXECUTED';
+      let actualResult = 'NOT EXECUTED: Test case generated but was not scheduled or executed in this run.';
 
       if (exec) {
         if (exec.status === 'PASSED') {
-          status = 'Pass';
-          actualResult = `Pass: Test executed and verified successfully against ${targetEnvironment} (${exec.duration}ms).`;
+          status = 'PASS';
+          actualResult = `PASS: Test executed and verified successfully against ${targetEnvironment} (${exec.duration}ms).`;
         } else if (exec.status === 'FAILED') {
-          status = 'Fail';
+          status = 'FAIL';
           const cleanErr = cleanErrorMessage(exec.error);
-          actualResult = `Fail: ${cleanErr || 'Assertion failed during Playwright test execution.'} (${exec.duration}ms)`;
-        } else if (exec.status === 'BLOCKED') {
-          status = 'Blocked';
-          actualResult = `Blocked: Test execution was interrupted or dependent precondition was not met.`;
+          actualResult = `FAIL: ${cleanErr || 'Assertion failed during Playwright test execution.'} (${exec.duration}ms)`;
         } else if (exec.status === 'SKIPPED') {
-          status = 'Not Executed';
-          actualResult = `Not Executed: Test was skipped by test runner.`;
+          status = 'SKIPPED';
+          actualResult = `SKIPPED: Test was skipped by test runner (${cleanErrorMessage(exec.error) || 'Prerequisite not configured'}).`;
         }
-      } else {
-        status = 'Not Executed';
-        actualResult = 'Not Executed: Test case generated but was not scheduled or executed in this run.';
       }
 
       records.push({
@@ -245,37 +224,33 @@ export async function exportExcelReport(options?: Partial<ExcelReportOptions>): 
         expectedResult: tc.expectedResult,
         actualResult,
         status,
-        typeOfTesting: tc.testType || 'Positive',
-        priority: tc.priority || 'Medium',
       });
     }
 
-    // Include any baseline regression tests from Playwright execution not in AI collection
+    // Include any executed baseline regression tests
     for (const [id, exec] of executedTestMap.entries()) {
       if (!records.some((r) => r.testCaseId.toUpperCase() === id.toUpperCase())) {
-        let status: TestStatus = 'Not Executed';
-        let actualResult = 'Not Executed: Regression test skipped.';
+        let status: TestStatus = 'NOT EXECUTED';
+        let actualResult = 'NOT EXECUTED: Test skipped.';
 
         if (exec.status === 'PASSED') {
-          status = 'Pass';
-          actualResult = `Pass: Regression assertion verified cleanly (${exec.duration}ms).`;
+          status = 'PASS';
+          actualResult = `PASS: Verified cleanly (${exec.duration}ms).`;
         } else if (exec.status === 'FAILED') {
-          status = 'Fail';
-          actualResult = `Fail: ${cleanErrorMessage(exec.error) || 'Regression assertion failed.'}`;
-        } else if (exec.status === 'BLOCKED') {
-          status = 'Blocked';
-          actualResult = 'Blocked: Prerequisite setup or execution blocked.';
+          status = 'FAIL';
+          actualResult = `FAIL: ${cleanErrorMessage(exec.error) || 'Test assertion failed.'}`;
+        } else if (exec.status === 'SKIPPED') {
+          status = 'SKIPPED';
+          actualResult = 'SKIPPED: Test skipped during execution.';
         }
 
         records.push({
           testCaseId: id,
-          feature: 'Regression Suite',
-          objective: `Verify baseline regression scenario: ${id}`,
-          expectedResult: 'Regression check passes successfully without errors.',
+          feature: id.startsWith('LOGIN') ? 'Login' : id.startsWith('SIGNUP') ? 'Signup' : 'Playwright Suite',
+          objective: `Verify scenario for ${id}`,
+          expectedResult: 'Scenario executes and passes validation successfully.',
           actualResult,
           status,
-          typeOfTesting: 'Regression',
-          priority: 'High',
         });
       }
     }
@@ -286,26 +261,31 @@ export async function exportExcelReport(options?: Partial<ExcelReportOptions>): 
   workbook.creator = 'Happy Prancer Automation';
   workbook.created = new Date();
 
-  // Define exact 8 columns structure
-  const columns = [
-    { header: 'Test Case ID', key: 'testCaseId', width: 18 },
-    { header: 'Feature', key: 'feature', width: 24 },
-    { header: 'Objective', key: 'objective', width: 42 },
-    { header: 'Expected Result', key: 'expectedResult', width: 42 },
-    { header: 'Actual Result', key: 'actualResult', width: 45 },
-    { header: 'Status', key: 'status', width: 16 },
-    { header: 'Type of Testing', key: 'typeOfTesting', width: 18 },
-    { header: 'Priority', key: 'priority', width: 14 },
-  ];
+  // Define column structure based on mode
+  const columns =
+    mode === 'pr'
+      ? [
+          { header: 'Test Case ID', key: 'testCaseId', width: 18 },
+          { header: 'Feature', key: 'feature', width: 28 },
+          { header: 'Objective', key: 'objective', width: 48 },
+          { header: 'Expected Result', key: 'expectedResult', width: 48 },
+        ]
+      : [
+          { header: 'Test Case ID', key: 'testCaseId', width: 18 },
+          { header: 'Feature', key: 'feature', width: 26 },
+          { header: 'Objective', key: 'objective', width: 45 },
+          { header: 'Expected Result', key: 'expectedResult', width: 45 },
+          { header: 'Actual Result', key: 'actualResult', width: 50 },
+          { header: 'Status', key: 'status', width: 18 },
+        ];
 
   // In Execution mode, add 'Execution Summary' sheet first
-  let total = records.length;
-  let passed = records.filter((r) => r.status === 'Pass').length;
-  let failed = records.filter((r) => r.status === 'Fail').length;
-  let blocked = records.filter((r) => r.status === 'Blocked').length;
-  let notExecuted = records.filter((r) => r.status === 'Not Executed').length;
-  let pending = records.filter((r) => r.status === 'Pending').length;
-  let passRate = total > 0 ? `${((passed / total) * 100).toFixed(1)}%` : '0.0%';
+  const total = records.length;
+  const passed = records.filter((r) => r.status === 'PASS').length;
+  const failed = records.filter((r) => r.status === 'FAIL').length;
+  const skipped = records.filter((r) => r.status === 'SKIPPED').length;
+  const notExecuted = records.filter((r) => r.status === 'NOT EXECUTED').length;
+  const passRate = total > 0 ? `${((passed / total) * 100).toFixed(1)}%` : '0.0%';
 
   if (mode === 'execution') {
     const summarySheet = workbook.addWorksheet('Execution Summary', {
@@ -322,17 +302,16 @@ export async function exportExcelReport(options?: Partial<ExcelReportOptions>): 
       { metric: 'Target Environment URL', value: targetEnvironment },
       { metric: 'Target Branch', value: targetBranch },
       { metric: 'Total Test Cases', value: total },
-      { metric: 'Passed Test Cases', value: passed },
-      { metric: 'Failed Test Cases', value: failed },
-      { metric: 'Blocked Test Cases', value: blocked },
-      { metric: 'Not Executed Test Cases', value: notExecuted },
+      { metric: 'Passed Test Cases (PASS)', value: passed },
+      { metric: 'Failed Test Cases (FAIL)', value: failed },
+      { metric: 'Skipped Test Cases (SKIPPED)', value: skipped },
+      { metric: 'Not Executed Test Cases (NOT EXECUTED)', value: notExecuted },
       { metric: 'Pass Percentage', value: passRate },
       { metric: 'Overall Status', value: failed > 0 ? 'FAIL' : passed > 0 && passed === total ? 'PASS' : 'WARNING' },
     ];
 
     summaryData.forEach((row) => summarySheet.addRow(row));
 
-    // Style Summary Sheet Header
     const summaryHeader = summarySheet.getRow(1);
     summaryHeader.height = 28;
     summaryHeader.font = { name: 'Calibri', size: 11, bold: true, color: { argb: 'FFFFFFFF' } };
@@ -369,7 +348,7 @@ export async function exportExcelReport(options?: Partial<ExcelReportOptions>): 
     testCasesSheet.addRow(rec);
   });
 
-  applyTableStyles(testCasesSheet);
+  applyTableStyles(testCasesSheet, columns.length);
 
   // Write output workbook
   const outputDir = options?.outputDir || path.resolve(process.cwd(), 'reports/excel');
@@ -382,7 +361,16 @@ export async function exportExcelReport(options?: Partial<ExcelReportOptions>): 
 
   console.log(`[export-excel-report] Successfully exported Excel workbook to: ${outputFilePath}`);
 
-  // Also in PR mode, copy to automation/test-cases/generated/PR_Test_Cases.xlsx
+  // In execution mode, sync to Playwright_Execution_Report.xlsx and playwright-test-report.xlsx
+  if (mode === 'execution') {
+    const alias1 = path.join(outputDir, 'Playwright_Execution_Report.xlsx');
+    const alias2 = path.join(outputDir, 'playwright-test-report.xlsx');
+    fs.copyFileSync(outputFilePath, alias1);
+    fs.copyFileSync(outputFilePath, alias2);
+    console.log(`[export-excel-report] Synced execution report to: ${alias1} and ${alias2}`);
+  }
+
+  // In PR mode, also copy to automation/test-cases/generated/PR_Test_Cases.xlsx
   if (mode === 'pr') {
     const generatedDir = path.resolve(process.cwd(), 'automation/test-cases/generated');
     if (fs.existsSync(generatedDir)) {
@@ -393,15 +381,16 @@ export async function exportExcelReport(options?: Partial<ExcelReportOptions>): 
   }
 
   // Publish step summary markdown
-  const summaryMd = mode === 'pr'
-    ? `### 📋 Happy Prancer PR Generated Test Cases (Excel Report)
+  const summaryMd =
+    mode === 'pr'
+      ? `### 📋 Happy Prancer PR Generated Test Cases (Pre-Merge Excel Report)
 
 - **Total Generated Cases**: ${total}
-- **Status**: All marked \`Pending\` (Awaiting live beta execution after merge)
+- **Format**: Exact 4 Columns (\`Test Case ID\`, \`Feature\`, \`Objective\`, \`Expected Result\`)
 - **Target Branch**: \`${targetBranch}\`
 - **Excel Report File**: \`${fileName}\`
 `
-    : `### 📊 Happy Prancer Playwright Test Execution Summary
+      : `### 📊 Happy Prancer Playwright Test Execution Summary (Post-Merge Excel Report)
 
 | Metric | Value |
 | :--- | :--- |
@@ -411,7 +400,7 @@ export async function exportExcelReport(options?: Partial<ExcelReportOptions>): 
 | **Total Test Cases** | ${total} |
 | **Passed Test Cases** | ${passed} ✅ |
 | **Failed Test Cases** | ${failed} ❌ |
-| **Blocked Test Cases** | ${blocked} ⚠️ |
+| **Skipped Test Cases** | ${skipped} ⚠️ |
 | **Not Executed Test Cases** | ${notExecuted} ⏳ |
 | **Pass Percentage** | **${passRate}** |
 
@@ -426,7 +415,10 @@ export async function exportExcelReport(options?: Partial<ExcelReportOptions>): 
   if (!fs.existsSync(reportsDir)) {
     fs.mkdirSync(reportsDir, { recursive: true });
   }
-  fs.writeFileSync(path.join(reportsDir, mode === 'pr' ? 'pr-test-cases-summary.md' : 'execution-summary.md'), summaryMd);
+  fs.writeFileSync(
+    path.join(reportsDir, mode === 'pr' ? 'pr-test-cases-summary.md' : 'execution-summary.md'),
+    summaryMd
+  );
 
   const stepSummary = process.env.GITHUB_STEP_SUMMARY;
   if (stepSummary) {
