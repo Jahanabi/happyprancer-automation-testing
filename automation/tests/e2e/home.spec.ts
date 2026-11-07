@@ -17,7 +17,7 @@ test.describe('Public - Home & Landing Module [Regression]', () => {
     if (await homePage.loginNavButton.isVisible()) {
       await homePage.clickLogin();
       await page.waitForURL(/.*login.*/, { timeout: 10000 });
-      expect(page.url()).toContain('login');
+
     }
   });
 });
